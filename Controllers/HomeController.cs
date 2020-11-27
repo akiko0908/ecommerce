@@ -25,6 +25,10 @@ namespace Ecommerce.Controllers
         public IActionResult Index()
         {
             var lsProducts = db.Products;
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.NotificationMessage = TempData["SuccessMessage"];
+            }
             return View(lsProducts.ToList());
         }
 

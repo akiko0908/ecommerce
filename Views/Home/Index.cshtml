@@ -5,6 +5,19 @@
 
 <h2>Sản phẩm</h2>
 
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifiMessage').fadeOut('slow');
+    }, 3000);
+</script>
+
+@if (ViewBag.NotificationMessage != null)
+{
+    <div id="notifiMessage" class="alert alert-success" role="alert">
+        @ViewBag.NotificationMessage
+    </div>
+}
+
 <div class="row" style="margin-bottom: 8px;">
     @foreach (var item in Model)
     {

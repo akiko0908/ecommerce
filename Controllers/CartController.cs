@@ -64,11 +64,13 @@ namespace Ecommerce.Controllers
         }
 
         // hiển thị danh sách sản phẩm giỏ hàng
-        public IActionResult Index(bool isMessage)
+        public IActionResult Index()
         {
             var lsProducts = GetCartItems();
-            if (isMessage == true)
-                ViewBag.Message = "Add New Product To Cart Success!!!";
+            if (TempData["RemoveMessage"] != null)
+            {
+                ViewBag.RemoveMsg = TempData["RemoveMessage"];
+            }
             return View(lsProducts);
         }
 
@@ -91,10 +93,9 @@ namespace Ecommerce.Controllers
             {
                 cart.Add(new OrderDetail() { Product = product, orderdetail_Quantity = 1 });
             }
-
             SaveCartSession(cart);
-            ViewBag.Message = "Đã thêm sản phẩm thành công";
-            return RedirectToAction("Index", "Cart", new { isMessage = true });
+            TempData["SuccessMessage"] = "Đã thêm sản phẩm vào giỏ hàng thành công!!!";
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult RemoveCart(int? productid)
@@ -105,6 +106,7 @@ namespace Ecommerce.Controllers
             if (cart != null)
             {
                 cart.Remove(cartItem);
+                TempData["RemoveMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng!!!";
                 SaveCartSession(cart);
                 return RedirectToAction("Index");
             }

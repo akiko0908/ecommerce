@@ -33,6 +33,7 @@ namespace Ecommerce.Data
             // Add your customizations after calling base.OnModelCreating(builder);
 
             //Configuration EntityFramework
+            builder.Entity<AppUser>().ToTable("AppUser");
 
             // Seed Data
             builder.Entity<Supplier>().HasData(

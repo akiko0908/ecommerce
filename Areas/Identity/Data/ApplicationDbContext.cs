@@ -9,7 +9,7 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -32,6 +32,9 @@ namespace Ecommerce.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            //Configuration EntityFramework
+
+            // Seed Data
             builder.Entity<Supplier>().HasData(
                 new Supplier { supplier_ID = 1, supplier_Name = "FPT Telecom" },
                 new Supplier { supplier_ID = 2, supplier_Name = "Thế Giới Di Động" }

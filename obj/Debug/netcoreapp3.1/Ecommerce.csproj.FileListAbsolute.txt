@@ -168,3 +168,13 @@ C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Sha
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_StatusMessage.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Brand\Index.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Home\Help.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\OrderDetail\Index.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Order\DetailOrder.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\Index.cshtml.g.cs

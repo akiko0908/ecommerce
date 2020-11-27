@@ -1,0 +1,74 @@
+@{
+  ViewData["Title"] = "Cart Page";
+  decimal total = 0;
+}
+@model List<Ecommerce.Models.OrderDetail>
+
+<h2>GIỎ HÀNG</h2>
+
+@if (Model.Count > 0)
+{
+  int stt = 1;
+
+  <table class="table">
+    <tr>
+      <th>#</th>
+      <th>Sản phẩm</th>
+      <th>Giá</th>
+      <th>Số lượng</th>
+      <th>Thành tiền</th>
+      <th></th>
+    </tr>
+    @foreach (var cartitem in Model)
+    {
+      var thanhtien = cartitem.orderdetail_Quantity * cartitem.Product.product_Price;
+      total += thanhtien;
+
+      <tr>
+        <td>@(stt++)</td>
+        <td>@cartitem.Product.product_Name</td>
+        <td>@(cartitem.Product.product_Price.ToString("n0"))</td>
+        <td><input asp-for="@cartitem.orderdetail_Quantity" id="@($"quantity-{cartitem.Product.product_ID}")" /></td>
+        <td>@(thanhtien.ToString("n0"))</td>
+        <td>
+          <button class="btn btn-success updatecartitem" data-productid="@cartitem.Product.product_ID">Cập nhật</button>
+          <a asp-controller="Cart" asp-action="RemoveCart" asp-route-productid="@cartitem.Product.product_ID"
+            class="btn btn-danger">Xóa</a>
+        </td>
+      </tr>
+    }
+    <tr>
+      <td colspan="4" class="text-right">Tổng tiền</td>
+      <td>@(total.ToString("n0"))</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <div>
+    <h3>Phương thức thanh toán</h3>
+    <form asp-controller="Cart" method="post">
+      <button type="submit" asp-action="Checkout" class="btn btn-success">Thanh toán tiền mặt</button>
+      <button type="submit" class="btn btn-success" asp-action="CheckOutPayPal" asp-route-total="@total">Thanh
+        toán PayPal</button>
+    </form>
+  </div>
+}
+else
+{
+  <p class="alert alert-danger">Giỏ hàng trống</p>
+}
+<hr>
+<div class="backto__home btn btn-info ">
+  <h3>
+    <a class="shopping__continute" asp-controller="Home" asp-action="Index">Tiếp tục mua sắm</a>
+  </h3>
+</div>
+
+@section Scripts{
+  @if (ViewBag.Message != null)
+  {
+    <script type="text/javascript">
+      alert('@ViewBag.Message.ToString()');
+    </script>
+  }
+}

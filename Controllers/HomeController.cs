@@ -43,6 +43,12 @@ namespace Ecommerce.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Detail(int? id)
+        {
+            Product product = db.Products.Find(id);
+            return View(product);
+        }
+
         public IActionResult CategoriesView(int? idBrand)
         {
             if (idBrand != null)

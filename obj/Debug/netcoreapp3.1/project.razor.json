@@ -14547,6 +14547,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\Brand\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Brand\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
       "FileKind": "mvc"
@@ -14679,6 +14684,11 @@
     {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\Brand\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\Brand\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {

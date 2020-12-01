@@ -1,0 +1,29 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý Hãng sản xuất";
+}
+@model IEnumerable<Ecommerce.Models.Brand>
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMessage').fadeOut('slow');
+    }, 2500);
+</script>
+
+<h3>Danh sách Hãng sản xuất</h3>
+@if (ViewBag.DeleteMsg != null)
+{
+    <div id="notifyMessage" class="alert alert-success" role="alert">
+        @ViewBag.DeleteMsg
+    </div>
+}
+<hr>
+
+<div>
+    <table>
+        <th></th>
+        <tr>
+
+        </tr>
+    </table>
+</div>

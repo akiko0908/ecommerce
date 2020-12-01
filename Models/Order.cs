@@ -44,6 +44,7 @@ namespace Ecommerce.Models
         public virtual Promotion Promotion { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
         public AppUser AppUser { get; set; }
     }
 }

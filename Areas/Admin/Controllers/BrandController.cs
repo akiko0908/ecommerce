@@ -87,5 +87,33 @@ namespace Ecommerce.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult Details(int? id)
+        {
+            Brand chooseBrand = dbContext.Brands.Find(id);
+            return PartialView(chooseBrand);
+        }
+
+        [HttpGet]
+        public IActionResult Update(int? id)
+        {
+            Brand chooseBrand = dbContext.Brands.Find(id);
+            return PartialView(chooseBrand);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Brand chooseBrand)
+        {
+            if (ModelState.IsValid)
+            {
+                if (chooseBrand != null)
+                {
+                    dbContext.Brands.Remove(chooseBrand);
+                    dbContext.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            return PartialView("Update", chooseBrand);
+        }
     }
 }

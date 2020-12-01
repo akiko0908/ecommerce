@@ -1,0 +1,43 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý sản phẩm";
+}
+@model IEnumerable<Ecommerce.Models.Product>
+
+<h3>Quản lý sản phẩm</h3>
+<hr>
+
+<div>
+    <h2>Điện thoại</h2>
+    <table class="table">
+        <tr>
+            <th class="table_id">Mã sản phẩm</th>
+            <th class="table_name">Tên sản phẩm</th>
+            <th class="table_image">Hình ảnh</th>
+            <th class="table_price">Giá bán</th>
+            <th class="table_os">Hệ điều hành</th>
+            <th class="table_description">Mô tả</th>
+            <th class="table_brand">Thương hiệu</th>
+            <th class="table_supplier">Nhà cung cấp</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.categories_ID == item.Categories.categories_ID)
+            {
+                <tr>
+                    <td>@item.product_ID</td>
+                    <td>@item.product_Name</td>
+                    <td><img src="~/images/@item.product_Image" alt="@item.product_Image" width="100" height="100"></td>
+                    <td>@item.product_Price</td>
+                    <td>@item.HeDieuHanh.hdh_Name</td>
+                    <td>@item.product_Description</td>
+                    <td>@item.Brand.brand_Name</td>
+                    <td>@item.Supplier.supplier_Name</td>
+                    <td>
+                        <a>Edit</a> | <a>Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

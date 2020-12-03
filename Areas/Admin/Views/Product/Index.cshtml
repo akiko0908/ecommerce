@@ -7,6 +7,19 @@
 <h3>Quản lý sản phẩm</h3>
 <hr>
 
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifiMsg').fadeOut('slow');
+    }, 3000);
+</script>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifiMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
 <div>
     <h2>Điện thoại</h2>
     <table class="table">
@@ -26,15 +39,22 @@
             {
                 <tr>
                     <td>@item.product_ID</td>
-                    <td>@item.product_Name</td>
-                    <td><img src="~/images/@item.product_Image" alt="@item.product_Image" width="100" height="100"></td>
+                    <td>
+                        <a asp-controller="" asp-action="" asp-route="" asp-route-name="">
+                            @item.product_Name</a>
+                    </td>
+                    <td>
+                        <img src="~/images/@item.product_Image" alt="@item.product_Image" width="100" height="100">
+                    </td>
                     <td>@item.product_Price</td>
                     <td>@item.HeDieuHanh.hdh_Name</td>
                     <td>@item.product_Description</td>
                     <td>@item.Brand.brand_Name</td>
                     <td>@item.Supplier.supplier_Name</td>
                     <td>
-                        <a>Edit</a> | <a>Delete</a>
+                        <a asp-controller="" asp-action="" asp-route-id="" asp-route-name="@item.product_Name">Detail</a> |
+                        <a asp-controller="" asp-action="" asp-route-id="">Edit</a> |
+                        <a asp-controller="" asp-action="" asp-route-id="">Delete</a>
                     </td>
                 </tr>
             }

@@ -27,7 +27,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             {
                 ViewBag.DeleteMsg = TempData["SuccessDelete"];
             }
-            return View(lsBrand.ToList()); //TODO: tạo view result cho method này
+            return View(lsBrand.ToList());
         }
 
         [HttpGet]

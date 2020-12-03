@@ -20,10 +20,22 @@
 <hr>
 
 <div>
-    <table>
-        <th></th>
+    <table class="table">
         <tr>
-
+            <th>Mã hãng sản xuất</th>
+            <th>Tên hãng sản xuất</th>
+            <th></th>
         </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.brand_ID</td>
+                <td>@item.brand_Name</td>
+                <td>
+                    <a class="btn btn-info" asp-controller="" asp-action="" asp-route-id="">Edit</a>
+                    <a class="btn btn-danger" asp-controller="" asp-action="" asp-route-id="">Delete</a>
+                </td>
+            </tr>
+        }
     </table>
 </div>

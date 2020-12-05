@@ -56,7 +56,7 @@ namespace Ecommerce
                 endpoints.MapAreaControllerRoute(
                     name: "MyArea",
                     areaName: "Admin",
-                    pattern: "Admin/{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "Admin/{controller=ManageAdmin}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

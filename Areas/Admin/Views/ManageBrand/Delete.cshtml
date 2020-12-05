@@ -1,0 +1,11 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Xóa Thương hiệu";
+}
+@model Ecommerce.Models.Brand
+
+<h2>Thông tin Thường hiệu</h2>
+<hr>
+
+<label asp-for="brand_Name"></label>
+<h4>@Model.brand_Name</h4>

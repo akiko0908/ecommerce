@@ -7,16 +7,16 @@
 <h2>GIỎ HÀNG</h2>
 
 <script type="text/javascript">
-    setTimeout(function () {
-        $('#notifiMessage').fadeOut('slow');
-    }, 3000);
+  setTimeout(function () {
+    $('#notifiMessage').fadeOut('slow');
+  }, 3000);
 </script>
 
 @if (ViewBag.RemoveMsg != null)
 {
-    <div id="notifiMessage" class="alert alert-success" role="alert">
-        @ViewBag.RemoveMsg
-    </div>
+  <div id="notifiMessage" class="alert alert-success" role="alert">
+    @ViewBag.RemoveMsg
+  </div>
 }
 
 @if (Model.Count > 0)

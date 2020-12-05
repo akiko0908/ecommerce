@@ -25,6 +25,7 @@ namespace Ecommerce
         {
             services.AddControllersWithViews();
             services.AddSession();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +53,11 @@ namespace Ecommerce
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "MyArea",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=ManageAdmin}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

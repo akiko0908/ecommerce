@@ -9,7 +9,7 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -32,6 +32,10 @@ namespace Ecommerce.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            //Configuration EntityFramework
+            builder.Entity<AppUser>().ToTable("AppUser");
+
+            // Seed Data
             builder.Entity<Supplier>().HasData(
                 new Supplier { supplier_ID = 1, supplier_Name = "FPT Telecom" },
                 new Supplier { supplier_ID = 2, supplier_Name = "Thế Giới Di Động" }
@@ -80,7 +84,8 @@ namespace Ecommerce.Data
                     product_Description = "iPhone 11 - 64GB",
                     supplier_ID = 1,
                     hdh_ID = 1,
-                    brand_ID = 1
+                    brand_ID = 1,
+                    categories_ID = 1
                 },
                 new Product
                 {
@@ -92,7 +97,8 @@ namespace Ecommerce.Data
                     product_Description = "iPhone 12 - 64GB",
                     supplier_ID = 1,
                     hdh_ID = 1,
-                    brand_ID = 1
+                    brand_ID = 1,
+                    categories_ID = 1
                 },
                 new Product
                 {
@@ -104,7 +110,8 @@ namespace Ecommerce.Data
                     product_Description = "iPhone 12 - 64GB",
                     supplier_ID = 1,
                     hdh_ID = 1,
-                    brand_ID = 1
+                    brand_ID = 1,
+                    categories_ID = 1
                 },
                 new Product
                 {
@@ -116,7 +123,8 @@ namespace Ecommerce.Data
                     product_Description = "Samsung Galaxy S20 - New 100% fullbox",
                     supplier_ID = 2,
                     hdh_ID = 2,
-                    brand_ID = 2
+                    brand_ID = 2,
+                    categories_ID = 1
                 },
                 new Product
                 {
@@ -128,7 +136,8 @@ namespace Ecommerce.Data
                     product_Description = "Oppo A93 - New 100% fullbox",
                     supplier_ID = 2,
                     hdh_ID = 2,
-                    brand_ID = 4
+                    brand_ID = 4,
+                    categories_ID = 1
                 },
                 new Product
                 {
@@ -140,7 +149,8 @@ namespace Ecommerce.Data
                     product_Description = "Xiaomi Mi 10T Pro 64GB - New 100% fullbox",
                     supplier_ID = 1,
                     hdh_ID = 2,
-                    brand_ID = 3
+                    brand_ID = 3,
+                    categories_ID = 1
                 }
             );
         }

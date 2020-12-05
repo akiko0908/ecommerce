@@ -28,5 +28,7 @@ namespace Ecommerce.Models
         [ForeignKey("Customer")]
         public int? customer_ID { get; set; }
         public virtual Customer Customer { get; set; }
+
+        public AppUser AppUser { get; set; }
     }
 }

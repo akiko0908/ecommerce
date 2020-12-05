@@ -42,5 +42,9 @@ namespace Ecommerce.Models
         [ForeignKey("Promotion")]
         public int? promotion_ID { get; set; }
         public virtual Promotion Promotion { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public AppUser AppUser { get; set; }
     }
 }

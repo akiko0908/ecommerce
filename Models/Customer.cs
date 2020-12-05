@@ -32,5 +32,8 @@ namespace Ecommerce.Models
 
         [Display(Name = "Địa chỉ giao hàng 2")]
         public string customer_AddressShip2 { get; set; }
+
+        // khóa ngoại trỏ đến User trên Identity
+        public AppUser AppUser { get; set; }
     }
 }

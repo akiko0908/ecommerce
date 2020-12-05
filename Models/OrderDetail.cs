@@ -17,9 +17,8 @@ namespace Ecommerce.Models
         [Range(1, 20, ErrorMessage = "Số lượng mua từ 1 đến 20 sản phẩm!!!")]
         public int orderdetail_Quantity { get; set; }
 
+        // foreign key
         public virtual Order Order { get; set; }
-
         public virtual Product Product { get; set; }
-
     }
 }

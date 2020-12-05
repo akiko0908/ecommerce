@@ -25,6 +25,10 @@ namespace Ecommerce.Controllers
         public IActionResult Index()
         {
             var lsProducts = db.Products;
+            if (TempData["SuccessMessage"] != null)
+            {
+                ViewBag.NotificationMessage = TempData["SuccessMessage"];
+            }
             return View(lsProducts.ToList());
         }
 
@@ -37,6 +41,12 @@ namespace Ecommerce.Controllers
                 return View("Index", lsProducts.ToList());
             }
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Detail(int? id)
+        {
+            Product product = db.Products.Find(id);
+            return View(product);
         }
 
         public IActionResult CategoriesView(int? idBrand)

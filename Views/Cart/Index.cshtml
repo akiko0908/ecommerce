@@ -6,6 +6,19 @@
 
 <h2>GIỎ HÀNG</h2>
 
+<script type="text/javascript">
+  setTimeout(function () {
+    $('#notifiMessage').fadeOut('slow');
+  }, 3000);
+</script>
+
+@if (ViewBag.RemoveMsg != null)
+{
+  <div id="notifiMessage" class="alert alert-success" role="alert">
+    @ViewBag.RemoveMsg
+  </div>
+}
+
 @if (Model.Count > 0)
 {
   int stt = 1;
@@ -63,12 +76,3 @@ else
     <a class="shopping__continute" asp-controller="Home" asp-action="Index">Tiếp tục mua sắm</a>
   </h3>
 </div>
-
-@section Scripts{
-  @if (ViewBag.Message != null)
-  {
-    <script type="text/javascript">
-      alert('@ViewBag.Message.ToString()');
-    </script>
-  }
-}

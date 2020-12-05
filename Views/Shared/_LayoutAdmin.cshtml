@@ -55,7 +55,7 @@
                     <div class="nav">
                         @* phần menu đầu *@
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-area="Admin" asp-controller="ManageProduct" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
@@ -71,15 +71,16 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="">Sản phẩm</a>
-                                <a class="nav-link" href="">Thương hiệu</a>
-                                <a class="nav-link" href="">Nhà cung cấp</a>
-                                <a class="nav-link" href="">Loại sản phẩm</a>
-                                <a class="nav-link" href="">Đơn hàng</a>
-                                <a class="nav-link" href="">Khuyến mãi</a>
-                                <a class="nav-link" href="">Dịch vụ vận chuyển</a>
-                                <a class="nav-link" href="">Hệ điều hành</a>
-                                <a class="nav-link" href="">Khách hàng mua sắm</a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="ManageProduct"
+                                    asp-action="Index">Sản phẩm</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Thương hiệu</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Nhà cung cấp</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Loại sản phẩm</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Đơn hàng</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Khuyến mãi</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Dịch vụ vận chuyển</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Hệ điều hành</a>
+                                <a class="nav-link" asp-area="" asp-controller="" asp-action="">Khách hàng mua sắm</a>
                         </div>
 
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -101,8 +102,10 @@
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                                     data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="">Quản lý tài khoản</a>
-                                        <a class="nav-link" href="">Phân quyền truy cập</a>
+                                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">Quản lý tài
+                                            khoản</a>
+                                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">Phân quyền truy
+                                            cập</a>
                                     </nav>
                                 </div>
 
@@ -116,9 +119,12 @@
                                 <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                                     data-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="">Danh khách người dùng</a>
-                                        <a class="nav-link" href="">Phần quyèn người dùng</a>
-                                        <a class="nav-link" href="">Đăng ký người dùng mới</a>
+                                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">Danh khách người
+                                            dùng</a>
+                                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">Phần quyền người
+                                            dùng</a>
+                                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">Đăng ký người
+                                            dùng mới</a>
                                     </nav>
                                 </div>
                             </nav>
@@ -126,11 +132,11 @@
 
                         @* phần menu thứ 3 *@
                         <div class="sb-sidenav-menu-heading">Tùy chọn</div>
-                        <a class="nav-link" href="charts.html">
+                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Thống kê
                         </a>
-                        <a class="nav-link" href="tables.html">
+                        <a class="nav-link" asp-area="" asp-controller="" asp-action="">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Xuất báo cáo
                         </a>

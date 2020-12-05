@@ -178,9 +178,10 @@ C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Adm
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageProduct\Index.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageBrand\Create.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageBrand\Delete.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageProduct\Delete.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageProduct\Edit.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageRole\Index.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Account\SignUp.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\ManageProduct\Detail.cshtml.g.cs

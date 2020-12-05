@@ -7,6 +7,8 @@
 <h3>Quản lý sản phẩm</h3>
 <hr>
 
+<a asp-controller="manageproduct" asp-action="create" class="btn btn-success">Thêm mới sản phẩm</a>
+
 <script type="text/javascript">
     setTimeout(function () {
         $('#notifiMsg').fadeOut('slow');
@@ -39,10 +41,7 @@
             {
                 <tr>
                     <td>@item.product_ID</td>
-                    <td>
-                        <a asp-controller="" asp-action="" asp-route="" asp-route-name="">
-                            @item.product_Name</a>
-                    </td>
+                    <td> @item.product_Name </td>
                     <td>
                         <img src="~/images/@item.product_Image" alt="@item.product_Image" width="100" height="100">
                     </td>

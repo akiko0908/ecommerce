@@ -1,0 +1,55 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý Loại sản phẩm";
+}
+@model IEnumerable<Ecommerce.Models.Customer>
+
+<div class="manage_title">
+    <h3>Danh sách thông tin Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
+<hr>
+
+<div style="margin: 0 auto; width: 40em;">
+    <table class="table">
+        <tr>
+            <th>Mã khách hàng</th>
+            <th>Tên khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Địa chỉ 1</th>
+            <th>Địa chỉ 2</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.customer_ID</td>
+                <td>@item.customer_Name</td>
+                <td>@item.customer_PhoneNumber</td>
+                <td>@item.customer_Email</td>
+                <td>@item.customer_AddressShip1</td>
+                <td>@item.customer_AddressShip2</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCustomer" asp-action="Edit"
+                        asp-route-id="@item.customer_ID">Edit</a> |
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCustomer" asp-action="Delete"
+                        asp-route-id="@item.customer_ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

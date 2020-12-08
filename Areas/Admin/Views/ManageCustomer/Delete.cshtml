@@ -1,0 +1,78 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Xóa Loại sản phẩm";
+}
+@model Ecommerce.Models.Customer
+
+
+<div class="manage_title">
+    <h3>Xóa Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+<hr>
+
+<div class="row">
+    <div class="col-sm-4 offset-sm-1">
+        <dl class="row">
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model =>model.customer_ID)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model =>model.customer_ID)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model =>model.customer_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model =>model.customer_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.customer_PhoneNumber)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.customer_PhoneNumber)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.customer_Email)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.customer_Email)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.customer_AddressShip1)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.customer_AddressShip1)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.customer_AddressShip2)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.customer_AddressShip2)
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr>
+<div class="manage_footer">
+    <a asp-controller="ManageCustomer" asp-action="Index" class="btn btn-info">Cancel</a>
+    <a asp-controller="ManageCustomer" asp-action="ConfirmDelete" asp-route-id="@Model.customer_ID"
+        class="btn btn-danger">Confirm Delete</a>
+</div>

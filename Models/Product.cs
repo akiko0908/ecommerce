@@ -17,7 +17,7 @@ namespace Ecommerce.Models
         [Display(Name = "Tên sản phẩm")]
         public string product_Name { get; set; }
 
-        [Required(ErrorMessage = "")]
+        [Required(ErrorMessage = "Phải nhập giá cho sản phẩm!!!")]
         [Display(Name = "Giá SP")]
         [Range(10000, 100000000, ErrorMessage = "Giá sản phẩm từ 10,000 đến 100,000,000vnđ!!!")]
         [DataType(DataType.Currency)]

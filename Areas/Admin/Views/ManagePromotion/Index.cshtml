@@ -1,0 +1,48 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý Khuyến mãi";
+}
+@model IEnumerable<Ecommerce.Models.Promotion>
+<div class="manage_title">
+    <h3>Danh sách thông tin Khuyến mãi</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
+<hr>
+
+<div style="margin: 0 auto; width: 40em;">
+    <table class="table">
+        <tr>
+            <th>Mã Khuyễn mãi</th>
+            <th>Tên Khuyễn mãi</th>
+            <th>Phần trăm chiết khấu</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.promotion_ID</td>
+                <td>@item.promotion_Name</td>
+                <td>@item.promotion_Percent</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManagePromotion" asp-action="Edit"
+                        asp-route-id="@item.promotion_ID">Edit</a> |
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="ManagePromotion" asp-action="Delete"
+                        asp-route-id="@item.promotion_ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

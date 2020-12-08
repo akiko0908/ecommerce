@@ -1,0 +1,70 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý Loại sản phẩm";
+}
+@model IEnumerable<Ecommerce.Models.Order>
+
+<div class="manage_title">
+    <h3>Danh sách thông tin Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
+<hr>
+
+<div style="margin: 0 auto; width: 40em;">
+    <table class="table">
+        <tr>
+            <th>Mã Đơn hàng</th>
+            <th>Tên Khách hàng</th>
+            <th>Chi tiết đơn hàng</th>
+            <th>Khu vực giao hàng</th>
+            <th>Ngày tạo</th>
+            <th>Ngày thanh toán</th>
+            <th>Phương thức thanh toán</th>
+            <th>Phí giao hàng</th>
+            <th>Chiết khấu</th>
+            <th>Tổng tiền</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.order_ID</td>
+                <td>@item.Customer.customer_Name</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="GetOrderDetails"
+                        asp-route-id="categories_ID">Chi tiết đơn hàng</a>
+                </td>
+                <td>@item.DeliveryCost.deliverycost_AreaName</td>
+                <td>@item.order_CreateOnDay</td>
+                <td>@item.order_PaymentDate</td>
+                <td>@item.order_PaymentMethod</td>
+                <td>@item.DeliveryCost.deliverycost_Cost</td>
+                <td>
+                    @item.Promotion.promotion_Percent * @item.order_Total
+                </td>
+                <td>
+                    @item.order_Total + item.DeliveryCost.deliverycost_Cost + (item.Promotion.promotion_Percent
+                    * item.order_Total)</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
+                        asp-route-id="@item.order_ID">Edit</a> |
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                        asp-route-id="@item.order_ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

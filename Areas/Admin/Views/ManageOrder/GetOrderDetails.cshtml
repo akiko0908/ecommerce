@@ -1,0 +1,41 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Chi tiết đơn hàng";
+    decimal total = 0;
+}
+@model IEnumerable<Ecommerce.Models.OrderDetail>
+
+<div class="manage_title">
+    <h3>Chi tiết danh sách đặt hàng</h3>
+</div>
+<hr>
+<table class="table">
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Hình ảnh</th>
+        <th>Giá sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Thành tiền</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        var thanhtien = item.orderdetail_Quantity * item.Product.product_Price;
+        total += thanhtien;
+        <tr>
+            <td>@item.Product.product_Name</td>
+            <td>
+                <img src="~/images/@item.Product.product_ID" alt="@item.Product.product_Image" width="100" height="100">
+            </td>
+            <td>@item.Product.product_Price</td>
+            <td>@item.orderdetail_Quantity</td>
+            <td>@thanhtien.ToString("n0")</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="4">@total.ToString("n0")</td>
+    </tr>
+</table>
+
+<div style="margin: 0 auto;">
+    <a asp-controller="ManageOrder" asp-action="Index" class="btn btn-primary">Back to List order</a>
+</div>

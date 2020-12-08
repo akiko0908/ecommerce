@@ -12,6 +12,7 @@ namespace Ecommerce.Models
         [Key]
         [Display(Name = "Mã dịch vụ")]
         public int deliverycost_ID { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập tên khu vực!!!")]
         [Display(Name = "Khu vực vẫn chuyển")]
         public string deliverycost_AreaName { get; set; }

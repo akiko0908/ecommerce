@@ -1,0 +1,36 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Xóa Loại sản phẩm";
+}
+@model Ecommerce.Models.Categories
+
+
+<div class="manage_title">
+    <h3>Xóa Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+<hr>
+
+<div class="manage_body">
+    <label asp-for="categories_Name"></label>
+    <h4>@Model.categories_Name</h4>
+</div>
+<hr>
+
+<div class="manage_footer">
+    <a asp-controller="ManageCategories" asp-action="Index" class="btn btn-info">Cancel</a>
+    <a asp-controller="ManageCategories" asp-action="ConfirmDelete" asp-route-id="@Model.categories_ID"
+        class="btn btn-danger">Confirm Delete</a>
+</div>

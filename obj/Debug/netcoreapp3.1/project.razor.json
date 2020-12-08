@@ -14397,8 +14397,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageDeliveryCost\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageDeliveryCost\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManagePromotion\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManagePromotion\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOrder\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOrder\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14407,8 +14422,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageDeliveryCost\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageDeliveryCost\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOperatingSystem\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOperatingSystem\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Supplier\\Index.cshtml",
       "TargetPath": "Views\\Supplier\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageRole\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageRole\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14432,6 +14462,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageSupplier\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageSupplier\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -14442,13 +14477,43 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCustomer\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCustomer\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManagePromotion\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManagePromotion\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCategories\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCategories\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Home\\Detail.cshtml",
       "TargetPath": "Views\\Home\\Detail.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOrder\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOrder\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Shared\\_LoginPartial.cshtml",
       "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCustomer\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCustomer\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCategories\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCategories\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14462,13 +14527,48 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManagePromotion\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManagePromotion\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageBrand\\Delete.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageBrand\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageRole\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageRole\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOperatingSystem\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOperatingSystem\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOrder\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOrder\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageSupplier\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageSupplier\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageRole\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageRole\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageDeliveryCost\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageDeliveryCost\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14484,6 +14584,11 @@
     {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageProduct\\Index.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageProduct\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageSupplier\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageSupplier\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14507,6 +14612,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOperatingSystem\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOperatingSystem\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Home\\Contact.cshtml",
       "TargetPath": "Views\\Home\\Contact.cshtml",
       "FileKind": "mvc"
@@ -14522,8 +14632,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageSupplier\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageSupplier\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCategories\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCategories\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageBrand\\Index.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageBrand\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCustomer\\Delete.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCustomer\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManagePromotion\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManagePromotion\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOrder\\GetOrderDetails.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOrder\\GetOrderDetails.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14542,8 +14677,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageDeliveryCost\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageDeliveryCost\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCustomer\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCustomer\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageProduct\\Delete.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageProduct\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageAdmin\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageAdmin\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14577,8 +14727,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCategories\\Index.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageCategories\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOrder\\Edit.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOrder\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOperatingSystem\\Create.cshtml",
+      "TargetPath": "Areas\\Admin\\Views\\ManageOperatingSystem\\Create.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -5,9 +5,38 @@
 @model Ecommerce.Models.Brand
 
 <div class="manage_title">
-    <h3>Thêm Thường hiệu mới vào cửa hàng</h3>
+    <h3>Thêm Thương hiệu mới</h3>
 </div>
 
-<form asp-controller="managebrand" method="post">
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
 
-</form>
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+<hr>
+<div class="manage_content">
+    <form asp-controller="ManageBrand" method="POST">
+        <div class="form-group row">
+            <label asp-for="@Model.brand_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
+        </div>
+        <div class="form-group row">
+            <label asp-for="@Model.brand_Name" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="@Model.brand_Name" class="form-control"
+                    placeholder="Nhập Thương hiệu mới tại đây...">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group offset-sm-7">
+            <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
+            <a asp-action="Create" asp-area="Admin" class="btn btn-primary">Save Create</a>
+        </div>
+    </form>
+</div>

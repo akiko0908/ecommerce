@@ -4,22 +4,23 @@
 }
 @model IEnumerable<Ecommerce.Models.Brand>
 
-<script type="text/javascript">
-    setTimeout(function () {
-        $('#notifyMessage').fadeOut('slow');
-    }, 2500);
-</script>
-
 <div class="manage_title">
     <h3>Danh sách Hãng sản xuất</h3>
 </div>
 
-@if (ViewBag.DeleteMsg != null)
+@if (ViewBag.notifyMsg != null)
 {
-    <div id="notifyMessage" class="alert alert-success" role="alert">
-        @ViewBag.DeleteMsg
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
     </div>
 }
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
 <hr>
 
 <div style="margin: 0 auto; width: 40em;">
@@ -36,7 +37,7 @@
                 <td>@item.brand_Name</td>
                 <td>
                     <a class="btn btn-info" asp-area="Admin" asp-controller="ManageBrand" asp-action="Edit"
-                        asp-route-id="">Edit</a>
+                        asp-route-id="@item.brand_ID">Edit</a> |
                     <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageBrand" asp-action="Delete"
                         asp-route-id="@item.brand_ID">Delete</a>
                 </td>

@@ -1,7 +1,78 @@
 @{
     Layout = "_LayoutAdmin";
-    ViewData["TitleAdmin"] = "Cập nhật thông tin Hãng Sản Xuất";
+    ViewData["TitleAdmin"] = "Xóa sản phẩm";
 }
 @model Ecommerce.Models.Product
 
-TODO: hoàn thiện view cho trang này
+<div class="manage_title">
+    <h3>Xác nhận xóa sản phẩm</h3>
+</div>
+<hr>
+
+<div class="row">
+    <div class="col-sm-3 offset-sm-1 shadow-lg bg-white rounded">
+        <img style="width: 100%; height: 100%;" src="~/images/@Model.product_Image" width="200" height="200"
+            atl="@Model.product_Image" />
+    </div>
+
+    <div class="col-sm-4 offset-sm-1">
+        <dl class="row">
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model =>model.product_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model =>model.product_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.product_Price)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.product_Price)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Brand.brand_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Brand.brand_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Categories.categories_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Categories.categories_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.Supplier.supplier_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Supplier.supplier_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.HeDieuHanh.hdh_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.HeDieuHanh.hdh_Name)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model => model.product_Description)
+            </dt>
+            <dd class="col-sm-6" style="max-height: 15rem; height: fit-content;">
+                @Html.DisplayFor(model => model.product_Description)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+<hr>
+<div class="container" style="text-align: center; margin-top: 30px;">
+    <a asp-controller="ManageProduct" asp-action="Index" class="btn btn-primary">Back to Home</a>
+    <a asp-controller="ManageProduct" asp-action="ConfirmDelete" asp-route-id="@Model.product_ID"
+        class="btn btn-warning">Confirm
+        Delete</a>
+</div>

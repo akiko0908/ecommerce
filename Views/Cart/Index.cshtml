@@ -41,7 +41,9 @@
         <td>@(stt++)</td>
         <td>@cartitem.Product.product_Name</td>
         <td>@(cartitem.Product.product_Price.ToString("n0"))</td>
-        <td><input asp-for="@cartitem.orderdetail_Quantity" id="@($"quantity-{cartitem.Product.product_ID}")" /></td>
+        <td>
+          <input asp-for="@cartitem.orderdetail_Quantity" id="@($"quantity-{cartitem.Product.product_ID}")" />
+        </td>
         <td>@(thanhtien.ToString("n0"))</td>
         <td>
           <button class="btn btn-success updatecartitem" data-productid="@cartitem.Product.product_ID">Cập nhật</button>

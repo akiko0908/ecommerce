@@ -4,8 +4,33 @@
 }
 @model Ecommerce.Models.Brand
 
-<h2>Thông tin Thường hiệu</h2>
+
+<div class="manage_title">
+    <h3>Xóa Thương hiệu</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
 <hr>
 
-<label asp-for="brand_Name"></label>
-<h4>@Model.brand_Name</h4>
+<div class="manage_body">
+    <label asp-for="brand_Name"></label>
+    <h4>@Model.brand_Name</h4>
+</div>
+<hr>
+
+<div class="manage_footer">
+    <a asp-controller="ManageBrand" asp-action="Index" class="btn btn-info">Cancel</a>
+    <a asp-controller="ManageBrand" asp-action="ConfirmDelete" asp-route-id="@Model.brand_ID"
+        class="btn btn-danger">Confirm Delete</a>
+</div>

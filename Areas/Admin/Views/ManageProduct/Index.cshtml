@@ -4,7 +4,9 @@
 }
 @model IEnumerable<Ecommerce.Models.Product>
 
-<h3>Quản lý sản phẩm</h3>
+<div class="manage_title">
+    <h3>Quản lý sản phẩm</h3>
+</div>
 <hr>
 
 <a asp-controller="manageproduct" asp-action="create" class="btn btn-success">Thêm mới sản phẩm</a>
@@ -51,9 +53,12 @@
                     <td>@item.Brand.brand_Name</td>
                     <td>@item.Supplier.supplier_Name</td>
                     <td>
-                        <a asp-controller="" asp-action="" asp-route-id="" asp-route-name="@item.product_Name">Detail</a> |
-                        <a asp-controller="" asp-action="" asp-route-id="">Edit</a> |
-                        <a asp-controller="" asp-action="" asp-route-id="">Delete</a>
+                        <a asp-controller="ManageProduct" asp-action="Detail" asp-route-id="@item.product_ID"
+                            asp-route-name="@item.product_Name" class="btn btn-info">Detail</a> |
+                        <a asp-controller="ManageProduct" asp-action="Edit" asp-route-id="@item.product_ID"
+                            asp-route-name="@item.product_Name" class="btn btn-primary">Edit</a> |
+                        <a asp-controller="ManageProduct" asp-action="Delete" asp-route-id="@item.product_ID"
+                            asp-route-name="@item.product_Name" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             }

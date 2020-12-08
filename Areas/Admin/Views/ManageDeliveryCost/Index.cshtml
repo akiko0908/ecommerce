@@ -1,0 +1,49 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Quản lý Loại sản phẩm";
+}
+@model IEnumerable<Ecommerce.Models.DeliveryCost>
+
+<div class="manage_title">
+    <h3>Danh sách thông tin Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
+<hr>
+
+<div style="margin: 0 auto; width: 40em;">
+    <table class="table">
+        <tr>
+            <th>Mã Vẫn Chuyển</th>
+            <th>Khu vực</th>
+            <th>Giá dịch vụ</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.deliverycost_ID</td>
+                <td>@item.deliverycost_AreaName</td>
+                <td>@item.deliverycost_Cost</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
+                        asp-route-id="@item.deliverycost_ID">Edit</a> |
+                    <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                        asp-route-id="@item.deliverycost_ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,50 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Xóa Loại sản phẩm";
+}
+@model Ecommerce.Models.Supplier
+
+
+<div class="manage_title">
+    <h3>Xóa Loại sản phẩm</h3>
+</div>
+
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="notifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#notifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+<hr>
+
+<div class="row">
+    <div class="col-sm-4 offset-sm-1">
+        <dl class="row">
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model =>model.supplier_ID)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model =>model.supplier_ID)
+            </dd>
+
+            <dt class="col-sm-6">
+                @Html.DisplayNameFor(model =>model.supplier_Name)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model =>model.supplier_Name)
+            </dd>
+        </dl>
+    </div>
+</div>
+<hr>
+<div class="manage_footer">
+    <a asp-controller="ManageSupplier" asp-action="Index" class="btn btn-info">Cancel</a>
+    <a asp-controller="ManageSupplier" asp-action="ConfirmDelete" asp-route-id="@Model.supplier_ID"
+        class="btn btn-danger">Confirm Delete</a>
+</div>

@@ -23,7 +23,7 @@
 <hr>
 
 <div class="manage_content">
-    <form asp-controller="ManagePromotion" method="POST">
+    <form asp-controller="ManagePromotion" asp-action="Edit" method="POST">
         <div class="form-group row">
             <label asp-for="@Model.promotion_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
         </div>
@@ -42,8 +42,8 @@
         <hr>
         <div class="form-group offset-sm-7">
             <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
-            <a asp-action="Edit" asp-area="Admin" asp-route-id="@Model.promotion_ID" class="btn btn-primary">Save
-                Update</a>
+            <button type="submit" class="btn btn-primary">Save
+                Update</button>
         </div>
     </form>
 </div>

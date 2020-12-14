@@ -138,7 +138,7 @@ namespace Ecommerce.Controllers
 
         // thanh toán tiền mặt hơặc tại quầy
         // hoặc thanh toán sau khi customer nhận hàng
-        public IActionResult CheckOut()
+        public IActionResult CheckOut(Order newOrder)
         {
             return View();
         }
@@ -149,27 +149,54 @@ namespace Ecommerce.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult InformationCash(Order newOrder)
+        public IActionResult InformationCash(Customer newCustomer)
         {
-            var listCustomer = dbContext.Customers.Where(m => m.customer_Name.Contains(newOrder.Customer.customer_Name))
+            var listCustomer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
                                                   .ToList();
 
-            if (!ModelState.IsValid)
+            if (listCustomer.Count() <= 0)
             {
-                if (listCustomer.Count() <= 0)
-                {
-                    Customer newCustomer = new Customer();
-                    newCustomer.customer_ID = newOrder.Customer.customer_ID;
-                    newCustomer.customer_Name = newOrder.Customer.customer_Name;
-                    newCustomer.customer_PhoneNumber = newOrder.Customer.customer_PhoneNumber;
-                    newCustomer.customer_Email = newOrder.Customer.customer_Email;
-                    newCustomer.customer_AddressShip1 = newOrder.Customer.customer_AddressShip1;
-                    newCustomer.customer_AddressShip2 = newOrder.Customer.customer_AddressShip2;
-                    dbContext.Customers.Add(newCustomer);
-                }
-            }
+                dbContext.Customers.Add(newCustomer);
+                dbContext.SaveChanges();
 
-            return View();
+                Order order = new Order();
+                order.customer_ID = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault().customer_ID;
+                order.order_CreateOnDay = DateTime.Now;
+                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
+                order.order_PaymentDate = DateTime.Now;
+                order.order_PaymentMethod = "Thanh toán tiền mặt";
+                order.deliverycost_ID = null;
+                order.promotion_ID = null;
+                foreach (var item in GetCartItems())
+                {
+                    item.order_ID = order.order_ID;
+                }
+                dbContext.Orders.Add(order);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Customer customer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault();
+
+                Order order = new Order();
+                order.customer_ID = customer.customer_ID;
+                order.order_CreateOnDay = DateTime.Now;
+                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
+                order.order_PaymentDate = DateTime.Now;
+                order.order_PaymentMethod = "Thanh toán tiền mặt";
+                order.deliverycost_ID = null;
+                order.promotion_ID = null;
+                foreach (var item in GetCartItems())
+                {
+                    item.order_ID = order.order_ID;
+                }
+                dbContext.Orders.Add(order);
+                dbContext.SaveChanges();
+                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
+                return RedirectToAction("Index");
+            }
         }
 
         ///

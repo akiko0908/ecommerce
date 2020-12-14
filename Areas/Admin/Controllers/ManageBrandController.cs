@@ -42,7 +42,6 @@ namespace Ecommerce.Areas.Admin.Controllers
             }
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Brand newBrand)
         {
@@ -72,17 +71,12 @@ namespace Ecommerce.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (id != null)
-                {
-                    Brand oldBrand = dbContext.Brands.Find(id);
-                    if (oldBrand.brand_ID == updateBrand.brand_ID && oldBrand.brand_Name != updateBrand.brand_Name)
-                    {
-                        oldBrand.brand_Name = updateBrand.brand_Name;
-                        dbContext.SaveChanges();
-                        TempData["notifyMsg"] = "Cập nhật thông tin Thương hiệu thành công!!!";
-                        return RedirectToAction("Index");
-                    }
-                }
+                Brand oldBrand = dbContext.Brands.Find(id);
+
+                oldBrand.brand_Name = updateBrand.brand_Name;
+                dbContext.SaveChanges();
+                TempData["notifyMsg"] = "Cập nhật thông tin Thương hiệu thành công!!!";
+                return RedirectToAction("Index");
             }
             TempData["notifyMsg"] = "Cập nhật thông tin Thương hiệu thất bại";
             return View(updateBrand);
@@ -100,6 +94,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             if (id != null)
             {
                 Brand deleteBrand = dbContext.Brands.Find(id);
+
                 dbContext.Remove(deleteBrand);
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Xóa Hãng sản xuất thành công!!!";

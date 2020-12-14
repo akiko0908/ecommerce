@@ -1,0 +1,26 @@
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["TitleAdmin"] = "Tạo mới Quyền truy cập";
+}
+@model Ecommerce.Areas.Admin.Models.ViewModel.CreateRoleViewModel
+
+<div class="manage_title">
+    <h3>Tạo mới Role</h3>
+</div>
+<hr>
+
+<div class="manage_content">
+    <form asp-controller="Role" asp-action="CreateRole" method="post">
+        <div class="form-group row">
+            <label asp-for="@Model.RoleName" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="@Model.RoleName" class="form-control" placeholder="Nhập Role mới...">
+            </div>
+        </div>
+
+        <div class="form-group offset-sm-7">
+            <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save Create Role</button>
+        </div>
+    </form>
+</div>

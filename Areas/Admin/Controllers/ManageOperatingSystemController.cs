@@ -13,6 +13,7 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ManageOperatingSystemController : Controller
     {
         private readonly ApplicationDbContext dbContext;

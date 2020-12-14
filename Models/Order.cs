@@ -31,20 +31,18 @@ namespace Ecommerce.Models
         [Display(Name = "Phương thức thanh toán")]
         public string order_PaymentMethod { get; set; }
 
-        [ForeignKey("Customer")]
         public int? customer_ID { get; set; }
+        [ForeignKey("customer_ID")]
         public virtual Customer Customer { get; set; }
 
-        [ForeignKey("DeliveryCost")]
         public int? deliverycost_ID { get; set; }
+        [ForeignKey("deliverycost_ID")]
         public virtual DeliveryCost DeliveryCost { get; set; }
 
-        [ForeignKey("Promotion")]
         public int? promotion_ID { get; set; }
+        [ForeignKey("promotion_ID")]
         public virtual Promotion Promotion { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-
-        public AppUser AppUser { get; set; }
     }
 }

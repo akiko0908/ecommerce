@@ -24,21 +24,20 @@ TODO:@* tạo hóa đơn cho đơn hàng sẽ được hoàn thành sau *@
 </script>
 <hr>
 <div class="manage_content">
-    <form asp-controller="ManageOrder" method="POST">
+    <form asp-controller="ManageOrder" asp-action="Create" method="POST">
         <div class="form-group row">
             <label asp-for="@Model.order_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Customer.customer_Name" class="col-sm-2 offset-sm-1 col-form-label"></label>
             <div class="col-sm-4">
-                <input type="text" asp-for="@Model.Customer.customer_Name" class="form-control"
-                    placeholder="Nhập tên khách hàng...">
+                <input type="text" asp-for="@Model.Customer.customer_Name" class="form-control">
             </div>
         </div>
         <hr>
         <div class="form-group offset-sm-7">
             <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
-            <a asp-action="Create" asp-area="Admin" class="btn btn-primary">Save Create</a>
+            <button type="submit" class="btn btn-primary">Save Create</button>
         </div>
     </form>
 </div>

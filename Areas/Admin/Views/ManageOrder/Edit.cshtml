@@ -4,7 +4,6 @@
 }
 @model Ecommerce.Models.Order
 
-TODO: @* chức năng được hoàn thành sau *@
 <div class="manage_title">
     <h3>Cập nhật thông tin Loại sản phẩm</h3>
 </div>
@@ -22,7 +21,7 @@ TODO: @* chức năng được hoàn thành sau *@
 <hr>
 
 <div class="manage_content">
-    <form asp-controller="ManageCategories" method="POST">
+    <form asp-controller="ManageCategories" asp-action="Edit" method="POST">
         <div class="form-group row">
             <label asp-for="@Model.order_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
         </div>
@@ -35,7 +34,7 @@ TODO: @* chức năng được hoàn thành sau *@
         <hr>
         <div class="form-group offset-sm-7">
             <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
-            <a asp-action="Edit" asp-area="Admin" asp-route-id="@Model.order_ID" class="btn btn-primary">Save Update</a>
+            <button type="submit" class="btn btn-primary">Save Update</button>
         </div>
     </form>
 </div>

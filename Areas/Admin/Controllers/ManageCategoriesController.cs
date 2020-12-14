@@ -71,19 +71,12 @@ namespace Ecommerce.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
-                {
-                    return RedirectToAction("Index");
-                }
                 Categories oldCategprries = dbContext.Categories.Find(id);
-                if (oldCategprries.categories_ID == newCategories.categories_ID
-                    && oldCategprries.categories_Name != newCategories.categories_Name)
-                {
-                    oldCategprries.categories_Name = newCategories.categories_Name;
-                    dbContext.SaveChanges();
-                    TempData["notifyMsg"] = "Cập nhật thông tin Loại sản phẩm thành công!!!";
-                    return RedirectToAction("Index");
-                }
+
+                oldCategprries.categories_Name = newCategories.categories_Name;
+                dbContext.SaveChanges();
+                TempData["notifyMsg"] = "Cập nhật thông tin Loại sản phẩm thành công!!!";
+                return RedirectToAction("Index");
             }
             return View(newCategories);
         }
@@ -101,11 +94,6 @@ namespace Ecommerce.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult ConfirmDelete(int? id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
-
             Categories chooseCategories = dbContext.Categories.Find(id);
 
             dbContext.Categories.Remove(chooseCategories);

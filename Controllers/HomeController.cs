@@ -24,7 +24,10 @@ namespace Ecommerce.Controllers
 
         public IActionResult Index()
         {
-            var lsProducts = db.Products;
+            var lsProducts = db.Products.Include(m => m.Brand)
+                                        .Include(m => m.Categories)
+                                        .Include(m => m.HeDieuHanh)
+                                        .Include(m => m.Supplier);
             if (TempData["SuccessMessage"] != null)
             {
                 ViewBag.NotificationMessage = TempData["SuccessMessage"];
@@ -41,12 +44,6 @@ namespace Ecommerce.Controllers
                 return View("Index", lsProducts.ToList());
             }
             return RedirectToAction("Index");
-        }
-
-        public IActionResult Detail(int? id)
-        {
-            Product product = db.Products.Find(id);
-            return View(product);
         }
 
         public IActionResult CategoriesView(int? idBrand)

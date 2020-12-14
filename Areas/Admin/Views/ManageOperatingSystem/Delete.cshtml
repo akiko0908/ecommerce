@@ -4,18 +4,15 @@
 }
 @model Ecommerce.Models.HeDieuHanh
 
-
 <div class="manage_title">
     <h3>Xóa Hệ điều hành</h3>
 </div>
-
 @if (ViewBag.notifyMsg != null)
 {
     <div id="notifyMsg" class="alert alert-success" role="alert">
         @ViewBag.notifyMsg
     </div>
 }
-
 <script type="text/javascript">
     setTimeout(function () {
         $('#notifyMsg').fadeOut('slow');
@@ -47,4 +44,4 @@
     <a asp-controller="ManageOperatingSystem" asp-action="Index" class="btn btn-info">Cancel</a>
     <a asp-controller="ManageOperatingSystem" asp-action="ConfirmDelete" asp-route-id="@Model.hdh_ID"
         class="btn btn-danger">Confirm Delete</a>
-</div>
+</div>ư

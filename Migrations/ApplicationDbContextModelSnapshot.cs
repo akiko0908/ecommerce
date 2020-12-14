@@ -161,9 +161,6 @@ namespace Ecommerce.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("comment_Content")
                         .HasColumnType("nvarchar(max)");
 
@@ -178,8 +175,6 @@ namespace Ecommerce.Migrations
 
                     b.HasKey("comment_ID");
 
-                    b.HasIndex("AppUserId");
-
                     b.HasIndex("customer_ID");
 
                     b.HasIndex("product_ID");
@@ -193,9 +188,6 @@ namespace Ecommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("customer_AddressShip1")
                         .IsRequired()
@@ -217,8 +209,6 @@ namespace Ecommerce.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("customer_ID");
-
-                    b.HasIndex("AppUserId");
 
                     b.ToTable("Customers");
                 });
@@ -314,9 +304,6 @@ namespace Ecommerce.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("customer_ID")
                         .HasColumnType("int");
 
@@ -339,8 +326,6 @@ namespace Ecommerce.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("order_ID");
-
-                    b.HasIndex("AppUserId");
 
                     b.HasIndex("customer_ID");
 
@@ -428,6 +413,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 1,
                             brand_ID = 1,
+                            categories_ID = 1,
                             hdh_ID = 1,
                             product_Description = "iPhone 11 - 64GB",
                             product_Image = "iphone-11.png",
@@ -440,6 +426,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 2,
                             brand_ID = 1,
+                            categories_ID = 1,
                             hdh_ID = 1,
                             product_Description = "iPhone 12 - 64GB",
                             product_Image = "iphone-12.png",
@@ -452,6 +439,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 3,
                             brand_ID = 1,
+                            categories_ID = 1,
                             hdh_ID = 1,
                             product_Description = "iPhone 12 - 64GB",
                             product_Image = "iphone-12-pro.png",
@@ -464,6 +452,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 4,
                             brand_ID = 2,
+                            categories_ID = 1,
                             hdh_ID = 2,
                             product_Description = "Samsung Galaxy S20 - New 100% fullbox",
                             product_Image = "samsung-galaxy-s20.png",
@@ -476,6 +465,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 5,
                             brand_ID = 4,
+                            categories_ID = 1,
                             hdh_ID = 2,
                             product_Description = "Oppo A93 - New 100% fullbox",
                             product_Image = "oppo-a93.png",
@@ -488,6 +478,7 @@ namespace Ecommerce.Migrations
                         {
                             product_ID = 6,
                             brand_ID = 3,
+                            categories_ID = 1,
                             hdh_ID = 2,
                             product_Description = "Xiaomi Mi 10T Pro 64GB - New 100% fullbox",
                             product_Image = "xiaomi-mi-10t-pro.png",
@@ -588,6 +579,15 @@ namespace Ecommerce.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "4d5ab53a-900c-4658-bd5d-55280e9eea20",
+                            ConcurrencyStamp = "aaf79e53-18d1-4d8f-87e5-45baba18b95c",
+                            Name = "Adminstrator",
+                            NormalizedName = "ADMINSTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -700,10 +700,6 @@ namespace Ecommerce.Migrations
 
             modelBuilder.Entity("Ecommerce.Models.Comment", b =>
                 {
-                    b.HasOne("Ecommerce.Models.AppUser", "AppUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("Ecommerce.Models.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("customer_ID");
@@ -713,21 +709,10 @@ namespace Ecommerce.Migrations
                         .HasForeignKey("product_ID");
                 });
 
-            modelBuilder.Entity("Ecommerce.Models.Customer", b =>
-                {
-                    b.HasOne("Ecommerce.Models.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId");
-                });
-
             modelBuilder.Entity("Ecommerce.Models.Order", b =>
                 {
-                    b.HasOne("Ecommerce.Models.AppUser", "AppUser")
-                        .WithMany("Orders")
-                        .HasForeignKey("AppUserId");
-
                     b.HasOne("Ecommerce.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("customer_ID");
 
                     b.HasOne("Ecommerce.Models.DeliveryCost", "DeliveryCost")
@@ -761,11 +746,11 @@ namespace Ecommerce.Migrations
                         .HasForeignKey("categories_ID");
 
                     b.HasOne("Ecommerce.Models.HeDieuHanh", "HeDieuHanh")
-                        .WithMany("GetProducts")
+                        .WithMany("Products")
                         .HasForeignKey("hdh_ID");
 
                     b.HasOne("Ecommerce.Models.Supplier", "Supplier")
-                        .WithMany("GetProducts")
+                        .WithMany("Products")
                         .HasForeignKey("supplier_ID");
                 });
 

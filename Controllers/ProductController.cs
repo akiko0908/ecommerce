@@ -22,36 +22,14 @@ namespace Ecommerce.Controllers
             db = context;
         }
 
-        //lấy danh sách sản phẩm hiện có liệt kê hiển thị ra màn hình
-        public IActionResult Index()
+        public IActionResult Detail(int? id)
         {
-            var lsProduct = db.Products;
-            return View(lsProduct.ToList());
+            Product product = db.Products.Include(m => m.Brand)
+                                         .Include(m => m.Categories)
+                                         .Include(m => m.HeDieuHanh)
+                                         .Include(m => m.Supplier)
+                                         .Where(p => p.product_ID == id).FirstOrDefault();
+            return View(product);
         }
-
-        // hiển thị trang thêm sản phẩm
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // lấy thông tin sản phẩm đã thêm xử lý lưu vào database
-        [HttpPost]
-        public IActionResult Create(Product newProduct)
-        {
-            Product product = new Product();
-
-            if (!ModelState.IsValid)
-            {
-                if (newProduct != null)
-                {
-                    product = newProduct;
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(newProduct);
-        }
-
     }
 }

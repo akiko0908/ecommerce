@@ -20,13 +20,13 @@ namespace Ecommerce.Controllers
     public class CartController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext dbContext;
         public IConfiguration configuration { get; }
 
         public CartController(ILogger<HomeController> logger, ApplicationDbContext context, IConfiguration _configuration)
         {
             _logger = logger;
-            db = context;
+            dbContext = context;
             configuration = _configuration;
         }
 
@@ -76,7 +76,7 @@ namespace Ecommerce.Controllers
 
         public IActionResult AddToCart(int? idProduct)
         {
-            var product = db.Products.Where(m => m.product_ID == idProduct).FirstOrDefault();
+            var product = dbContext.Products.Where(m => m.product_ID == idProduct).FirstOrDefault();
 
             if (product == null)
                 return NotFound("Không tìm thấy sản phẩm!!!");
@@ -84,6 +84,9 @@ namespace Ecommerce.Controllers
             // lấy danh sách sản phẩm trong session
             var cart = GetCartItems();
 
+            // tìm sản phẩm đã thêm vào cart trước đó
+            // kiểm tra đã tồn tại thì tăng số lượng
+            // chưa tồn tài thì thêm mới vào cart
             var cartItem = cart.Find(m => m.Product.product_ID == idProduct);
             if (cartItem != null)
             {
@@ -93,6 +96,7 @@ namespace Ecommerce.Controllers
             {
                 cart.Add(new OrderDetail() { Product = product, orderdetail_Quantity = 1 });
             }
+
             SaveCartSession(cart);
             TempData["SuccessMessage"] = "Đã thêm sản phẩm vào giỏ hàng thành công!!!";
             return RedirectToAction("Index", "Home");
@@ -132,14 +136,45 @@ namespace Ecommerce.Controllers
         //     return Ok();
         // }
 
+        // thanh toán tiền mặt hơặc tại quầy
+        // hoặc thanh toán sau khi customer nhận hàng
         public IActionResult CheckOut()
         {
             return View();
         }
 
+        [HttpGet]
+        public IActionResult InformationCash()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult InformationCash(Order newOrder)
+        {
+            var listCustomer = dbContext.Customers.Where(m => m.customer_Name.Contains(newOrder.Customer.customer_Name))
+                                                  .ToList();
+
+            if (!ModelState.IsValid)
+            {
+                if (listCustomer.Count() <= 0)
+                {
+                    Customer newCustomer = new Customer();
+                    newCustomer.customer_ID = newOrder.Customer.customer_ID;
+                    newCustomer.customer_Name = newOrder.Customer.customer_Name;
+                    newCustomer.customer_PhoneNumber = newOrder.Customer.customer_PhoneNumber;
+                    newCustomer.customer_Email = newOrder.Customer.customer_Email;
+                    newCustomer.customer_AddressShip1 = newOrder.Customer.customer_AddressShip1;
+                    newCustomer.customer_AddressShip2 = newOrder.Customer.customer_AddressShip2;
+                    dbContext.Customers.Add(newCustomer);
+                }
+            }
+
+            return View();
+        }
+
         ///
         /// yêu cầu tiến hành thanh toán bằng phương thức
-        /// thanh toán qua cổng thanh toán PayPal
+        /// t   hanh toán qua cổng thanh toán PayPal
         ///
         [HttpPost]
         public async Task<IActionResult> CheckOutPayPal(double total)
@@ -177,6 +212,5 @@ namespace Ecommerce.Controllers
         {
             return View();
         }
-
     }
 }

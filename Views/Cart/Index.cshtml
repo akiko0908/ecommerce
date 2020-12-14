@@ -62,7 +62,7 @@
   <div>
     <h3>Phương thức thanh toán</h3>
     <form asp-controller="Cart" method="post">
-      <button type="submit" asp-action="Checkout" class="btn btn-success">Thanh toán tiền mặt</button>
+      <a asp-action="InformationCash" class="btn btn-success">Thanh toán tiền mặt</a>
       <button type="submit" class="btn btn-success" asp-action="CheckOutPayPal" asp-route-total="@total">Thanh
         toán PayPal</button>
     </form>

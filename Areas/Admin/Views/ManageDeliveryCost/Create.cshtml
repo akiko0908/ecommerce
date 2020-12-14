@@ -14,31 +14,28 @@
         @ViewBag.notifyMsg
     </div>
 }
-
 <script type="text/javascript">
     setTimeout(function () {
         $('#notifyMsg').fadeOut('slow');
     }, 2500);
 </script>
 <hr>
+
 <div class="manage_content">
     <form asp-controller="ManageDeliveryCost" asp-action="Create" method="POST">
         <div class="form-group row">
-            <label asp-for="@Model.deliverycost_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <label asp-for="deliverycost_AreaName" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="deliverycost_AreaName" class="form-control">
+            </div>
+            <span asp-validation-for="deliverycost_AreaName" class="text-danger"></span>
         </div>
         <div class="form-group row">
-            <label asp-for="@Model.deliverycost_AreaName" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <label asp-for="deliverycost_Cost" class="col-sm-2 offset-sm-1 col-form-label"></label>
             <div class="col-sm-4">
-                <input type="text" asp-for="@Model.deliverycost_AreaName" class="form-control"
-                    placeholder="Nhập tên khu vực giao hàng...">
+                <input type="text" asp-for="deliverycost_Cost" class="form-control">
             </div>
-        </div>
-        <div class="form-group row">
-            <label asp-for="@Model.deliverycost_Cost" class="col-sm-2 offset-sm-1 col-form-label"></label>
-            <div class="col-sm-4">
-                <input type="text" asp-for="@Model.deliverycost_Cost" class="form-control"
-                    placeholder="Nhập giá dịch vụ...">
-            </div>
+            <span asp-validation-for="deliverycost_Cost" class="text-danger"></span>
         </div>
         <hr>
         <div class="form-group offset-sm-7">

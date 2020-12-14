@@ -21,14 +21,12 @@ namespace Ecommerce.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime comment_CreateOnDay { get; set; }
 
-        [ForeignKey("Product")]
         public int? product_ID { get; set; }
+        [ForeignKey("product_ID")]
         public virtual Product Product { get; set; }
 
-        [ForeignKey("Customer")]
         public int? customer_ID { get; set; }
+        [ForeignKey("customer_ID")]
         public virtual Customer Customer { get; set; }
-
-        public AppUser AppUser { get; set; }
     }
 }

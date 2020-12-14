@@ -14477,11 +14477,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Supplier\\Index.cshtml",
-      "TargetPath": "Views\\Supplier\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
       "FileKind": "mvc"
@@ -14552,6 +14547,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Product\\Detail.cshtml",
+      "TargetPath": "Views\\Product\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageCategories\\Delete.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageCategories\\Delete.cshtml",
       "FileKind": "mvc"
@@ -14559,11 +14559,6 @@
     {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Home\\Detail.cshtml",
-      "TargetPath": "Views\\Home\\Detail.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14817,11 +14812,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Product\\Index.cshtml",
-      "TargetPath": "Views\\Product\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageDeliveryCost\\Edit.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageDeliveryCost\\Edit.cshtml",
       "FileKind": "mvc"
@@ -14929,11 +14919,6 @@
     {
       "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Areas\\Admin\\Views\\ManageOperatingSystem\\Create.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\ManageOperatingSystem\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Admin\\DataUser\\HUFLIT\\Ecommerce\\Views\\Brand\\Index.cshtml",
-      "TargetPath": "Views\\Brand\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

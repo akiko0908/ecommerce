@@ -33,8 +33,22 @@ using Ecommerce.Areas.Identity.Pages;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Admin\DataUser\HUFLIT\Ecommerce\Areas\Admin\Views\_ViewImports.cshtml"
+using Ecommerce;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Admin\DataUser\HUFLIT\Ecommerce\Areas\Admin\Views\_ViewImports.cshtml"
+using Ecommerce.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"32119e0384fca92983531faec08b6b483705e96f", @"/Areas/Admin/Views/ManagePromotion/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2b26ce1434772bcf63121b74e6c5d07dce68ba71", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"306f221960ab10c122a0b0e59f6e4ec51e25aeb8", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_ManagePromotion_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Ecommerce.Models.Promotion>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-info"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -152,7 +166,7 @@ using Ecommerce.Areas.Identity.Pages;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                <td>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32119e0384fca92983531faec08b6b483705e96f7984", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32119e0384fca92983531faec08b6b483705e96f8345", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -188,7 +202,7 @@ using Ecommerce.Areas.Identity.Pages;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32119e0384fca92983531faec08b6b483705e96f10647", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32119e0384fca92983531faec08b6b483705e96f11008", async() => {
                 WriteLiteral("Delete");
             }
             );

@@ -16,6 +16,6 @@ namespace Ecommerce.Models
         [Display(Name = "Tên hệ điều hành")]
         public string hdh_Name { get; set; }
 
-        public virtual ICollection<Product> GetProducts { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

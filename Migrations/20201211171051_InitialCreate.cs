@@ -3,26 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ecommerce.Migrations
 {
-    public partial class InitCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "AppUser",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -39,11 +25,27 @@ namespace Ecommerce.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_AppUser", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,6 +146,67 @@ namespace Ecommerce.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AppUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AppUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AppUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AppUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AppUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AppUser",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -165,47 +228,6 @@ namespace Ecommerce.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
@@ -222,29 +244,9 @@ namespace Ecommerce.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        name: "FK_AspNetUserRoles_AppUser_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "AppUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -387,14 +389,19 @@ namespace Ecommerce.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "4d5ab53a-900c-4658-bd5d-55280e9eea20", "aaf79e53-18d1-4d8f-87e5-45baba18b95c", "Adminstrator", "ADMINSTRATOR" });
+
+            migrationBuilder.InsertData(
                 table: "Brands",
                 columns: new[] { "brand_ID", "brand_Name" },
                 values: new object[,]
                 {
+                    { 4, "Oppo" },
                     { 1, "Apple" },
                     { 2, "Samsung" },
-                    { 3, "Xiaomi" },
-                    { 4, "Oppo" }
+                    { 3, "Xiaomi" }
                 });
 
             migrationBuilder.InsertData(
@@ -411,12 +418,12 @@ namespace Ecommerce.Migrations
                 columns: new[] { "deliverycost_ID", "deliverycost_AreaName", "deliverycost_Cost" },
                 values: new object[,]
                 {
-                    { 6, "Miền Bắc", 100000m },
                     { 5, "Ngoại thành", 50000m },
-                    { 4, "Quận 4", 30000m },
+                    { 6, "Miền Bắc", 100000m },
                     { 2, "Quận 2", 15000m },
                     { 1, "Quận 1", 15000m },
-                    { 3, "Quận 3", 10000m }
+                    { 3, "Quận 3", 10000m },
+                    { 4, "Quận 4", 30000m }
                 });
 
             migrationBuilder.InsertData(
@@ -443,8 +450,8 @@ namespace Ecommerce.Migrations
                 columns: new[] { "supplier_ID", "supplier_Name" },
                 values: new object[,]
                 {
-                    { 1, "FPT Telecom" },
-                    { 2, "Thế Giới Di Động" }
+                    { 2, "Thế Giới Di Động" },
+                    { 1, "FPT Telecom" }
                 });
 
             migrationBuilder.InsertData(
@@ -452,13 +459,25 @@ namespace Ecommerce.Migrations
                 columns: new[] { "product_ID", "brand_ID", "categories_ID", "hdh_ID", "product_Description", "product_Image", "product_Name", "product_Price", "product_Quantity", "supplier_ID" },
                 values: new object[,]
                 {
-                    { 1, 1, null, 1, "iPhone 11 - 64GB", "iphone-11.png", "iPhone 11", 1200m, 100, 1 },
-                    { 2, 1, null, 1, "iPhone 12 - 64GB", "iphone-12.png", "iPhone 12", 1290m, 100, 1 },
-                    { 3, 1, null, 1, "iPhone 12 - 64GB", "iphone-12-pro.png", "iPhone 12 Pro", 1400m, 100, 1 },
-                    { 6, 3, null, 2, "Xiaomi Mi 10T Pro 64GB - New 100% fullbox", "xiaomi-mi-10t-pro.png", "Xiaomi Mi 10T Pro", 1100m, 100, 1 },
-                    { 4, 2, null, 2, "Samsung Galaxy S20 - New 100% fullbox", "samsung-galaxy-s20.png", "Samsung Galaxy S20", 1350m, 100, 2 },
-                    { 5, 4, null, 2, "Oppo A93 - New 100% fullbox", "oppo-a93.png", "Oppo A93", 1000m, 100, 2 }
+                    { 1, 1, 1, 1, "iPhone 11 - 64GB", "iphone-11.png", "iPhone 11", 1200m, 100, 1 },
+                    { 2, 1, 1, 1, "iPhone 12 - 64GB", "iphone-12.png", "iPhone 12", 1290m, 100, 1 },
+                    { 3, 1, 1, 1, "iPhone 12 - 64GB", "iphone-12-pro.png", "iPhone 12 Pro", 1400m, 100, 1 },
+                    { 6, 3, 1, 2, "Xiaomi Mi 10T Pro 64GB - New 100% fullbox", "xiaomi-mi-10t-pro.png", "Xiaomi Mi 10T Pro", 1100m, 100, 1 },
+                    { 4, 2, 1, 2, "Samsung Galaxy S20 - New 100% fullbox", "samsung-galaxy-s20.png", "Samsung Galaxy S20", 1350m, 100, 2 },
+                    { 5, 4, 1, 2, "Oppo A93 - New 100% fullbox", "oppo-a93.png", "Oppo A93", 1000m, 100, 2 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AppUser",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AppUser",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -486,18 +505,6 @@ namespace Ecommerce.Migrations
                 name: "IX_AspNetUserRoles_RoleId",
                 table: "AspNetUserRoles",
                 column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                table: "AspNetUsers",
-                column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "AspNetUsers",
-                column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_customer_ID",
@@ -582,7 +589,7 @@ namespace Ecommerce.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AppUser");
 
             migrationBuilder.DropTable(
                 name: "Orders");

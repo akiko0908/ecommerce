@@ -33,8 +33,22 @@ using Ecommerce.Areas.Identity.Pages;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\Admin\DataUser\HUFLIT\Ecommerce\Areas\Admin\Views\_ViewImports.cshtml"
+using Ecommerce;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\Admin\DataUser\HUFLIT\Ecommerce\Areas\Admin\Views\_ViewImports.cshtml"
+using Ecommerce.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42be36acdcf5e00ccc8742f031df7ac8336c45ec", @"/Areas/Admin/Views/ManageSupplier/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2b26ce1434772bcf63121b74e6c5d07dce68ba71", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"306f221960ab10c122a0b0e59f6e4ec51e25aeb8", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_ManageSupplier_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Ecommerce.Models.Supplier>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "ManageSupplier", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -145,7 +159,7 @@ using Ecommerce.Areas.Identity.Pages;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n            </dd>\r\n        </dl>\r\n    </div>\r\n</div>\r\n<hr>\r\n<div class=\"manage_footer\">\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42be36acdcf5e00ccc8742f031df7ac8336c45ec7856", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42be36acdcf5e00ccc8742f031df7ac8336c45ec8217", async() => {
                 WriteLiteral("Cancel");
             }
             );
@@ -164,7 +178,7 @@ using Ecommerce.Areas.Identity.Pages;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42be36acdcf5e00ccc8742f031df7ac8336c45ec9304", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42be36acdcf5e00ccc8742f031df7ac8336c45ec9665", async() => {
                 WriteLiteral("Confirm Delete");
             }
             );

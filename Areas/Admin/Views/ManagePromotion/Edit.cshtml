@@ -14,7 +14,6 @@
         @ViewBag.nofifyMsg
     </div>
 }
-
 <script type="text/javascript">
     setTimeout(function () {
         $('#notifyMessage').fadeOut('slow');
@@ -25,25 +24,26 @@
 <div class="manage_content">
     <form asp-controller="ManagePromotion" asp-action="Edit" method="POST">
         <div class="form-group row">
-            <label asp-for="@Model.promotion_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <label asp-for="promotion_ID" hidden class="col-sm-2 offset-sm-1 col-form-label"></label>
         </div>
         <div class="form-group row">
-            <label asp-for="@Model.promotion_Name" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <label asp-for="promotion_Name" class="col-sm-2 offset-sm-1 col-form-label"></label>
             <div class="col-sm-4">
-                <input type="text" asp-for="@Model.promotion_Name" class="form-control">
+                <input type="text" asp-for="promotion_Name" class="form-control">
             </div>
+            <span asp-validation-for="promotion_Name" class="text-danger"></span>
         </div>
         <div class="form-group row">
-            <label asp-for="@Model.promotion_Percent" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <label asp-for="promotion_Percent" class="col-sm-2 offset-sm-1 col-form-label"></label>
             <div class="col-sm-4">
-                <input type="text" asp-for="@Model.promotion_Percent" class="form-control">
+                <input type="text" asp-for="promotion_Percent" class="form-control">
             </div>
+            <span asp-validation-for="promotion_Percent" class="text-danger"></span>
         </div>
         <hr>
         <div class="form-group offset-sm-7">
             <a asp-action="Index" asp-area="Admin" class="btn btn-danger">Cancel</a>
-            <button type="submit" class="btn btn-primary">Save
-                Update</button>
+            <button type="submit" class="btn btn-primary">Save Update</button>
         </div>
     </form>
 </div>

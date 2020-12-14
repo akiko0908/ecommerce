@@ -35,6 +35,16 @@ namespace Ecommerce.Data
             //Configuration EntityFramework
             builder.Entity<AppUser>().ToTable("AppUser");
 
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole
+                {
+                    Id = "4d5ab53a-900c-4658-bd5d-55280e9eea20",
+                    Name = "Adminstrator",
+                    NormalizedName = "ADMINSTRATOR",
+                    ConcurrencyStamp = "aaf79e53-18d1-4d8f-87e5-45baba18b95c"
+                }
+            );
+
             // Seed Data
             builder.Entity<Supplier>().HasData(
                 new Supplier { supplier_ID = 1, supplier_Name = "FPT Telecom" },

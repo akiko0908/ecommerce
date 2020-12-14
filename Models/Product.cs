@@ -35,20 +35,20 @@ namespace Ecommerce.Models
         [Display(Name = "Mô tả sản phẩm")]
         public string product_Description { get; set; }
 
-        [ForeignKey("Brand")]
         public int? brand_ID { get; set; }
+        [ForeignKey("brand_ID")]
         public virtual Brand Brand { get; set; }
 
-        [ForeignKey("HeDieuHanh")]
         public int? hdh_ID { get; set; }
+        [ForeignKey("hdh_ID")]
         public virtual HeDieuHanh HeDieuHanh { get; set; }
 
-        [ForeignKey("Supplier")]
         public int? supplier_ID { get; set; }
+        [ForeignKey("supplier_ID")]
         public virtual Supplier Supplier { get; set; }
 
-        [ForeignKey("Categories")]
         public int? categories_ID { get; set; }
+        [ForeignKey("categories_ID")]
         public virtual Categories Categories { get; set; }
     }
 }

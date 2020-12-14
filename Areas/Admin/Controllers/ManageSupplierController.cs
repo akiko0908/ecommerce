@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ManageSupplierController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -67,7 +68,9 @@ namespace Ecommerce.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             Supplier oldSupplier = dbContext.Suppliers.Find(id);
+
             dbContext.Suppliers.Remove(oldSupplier);
             dbContext.SaveChanges();
             TempData["notifyMsg"] = "Xóa Nhà cung cấp thành công!!!";

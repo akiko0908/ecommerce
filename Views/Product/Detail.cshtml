@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm - Page";
+}
+@model Ecommerce.Models.Product
+
+<div style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-sm-4 offset-sm-1 shadow-lg bg-white rounded" style="max-height: 400px;">
+            <img src="~/images/@Model.product_Image" width="350" height="400" atl="@Model.product_Image" />
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+            <dl class="row">
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model =>model.product_Name)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model =>model.product_Name)
+                </dd>
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.product_Price)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.product_Price)
+                </dd>
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.Brand.brand_Name)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.Brand.brand_Name)
+                </dd>
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.HeDieuHanh.hdh_Name)
+                </dt>
+                <dd class="col-sm-7">
+                    @Html.DisplayFor(model => model.HeDieuHanh.hdh_Name)
+                </dd>
+
+                <dt class="col-sm-5">
+                    @Html.DisplayNameFor(model => model.product_Description)
+                </dt>
+                <dd class="col-sm-7" style="max-height: 15rem; height: fit-content;">
+                    @Html.DisplayFor(model => model.product_Description)
+                </dd>
+            </dl>
+            <div class="container" style="text-align: center; margin-top: 30px;">
+                <a asp-controller="Cart" asp-action="AddToCart" asp-route-idProduct="@Model.product_ID"
+                    class="btn btn-warning" style="margin: o auto; width: 12em;">Buy now</a>
+            </div>
+        </div>
+    </div>
+</div>

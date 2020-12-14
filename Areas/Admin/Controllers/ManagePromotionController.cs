@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ManagePromotionController : Controller
     {
         private readonly ApplicationDbContext dbContext;

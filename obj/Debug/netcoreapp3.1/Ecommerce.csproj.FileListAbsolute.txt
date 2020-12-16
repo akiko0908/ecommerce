@@ -252,3 +252,8 @@ C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Adm
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\DeleteRole.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Role\EditRole.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Debug\netcoreapp3.1\Razor\Views\Product\Detail.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Debug\netcoreapp3.1\publish\web.config
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Debug\netcoreapp3.1\publish\appsettings.Development.json
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Debug\netcoreapp3.1\publish\appsettings.json
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Debug\netcoreapp3.1\publish\Ecommerce.deps.json
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Debug\netcoreapp3.1\publish\Ecommerce.runtimeconfig.json

@@ -15,6 +15,7 @@ using Ecommerce.Models;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ManageProductController : Controller
     {
         private readonly ApplicationDbContext dbContext;

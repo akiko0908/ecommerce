@@ -23,5 +23,7 @@ namespace Ecommerce.Models
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal deliverycost_Cost { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

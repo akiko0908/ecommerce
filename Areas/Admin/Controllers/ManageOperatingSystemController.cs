@@ -13,6 +13,7 @@ using Ecommerce.Models;
 
 namespace Ecommerce.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class ManageOperatingSystemController : Controller
     {

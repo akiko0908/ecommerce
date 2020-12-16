@@ -15,6 +15,7 @@ using Ecommerce.Areas.Admin.Models.ViewModel;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;

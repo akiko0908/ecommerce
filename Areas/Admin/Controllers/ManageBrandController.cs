@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class ManageBrandController : Controller
     {
         private readonly ApplicationDbContext dbContext;

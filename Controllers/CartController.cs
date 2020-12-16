@@ -138,9 +138,59 @@ namespace Ecommerce.Controllers
 
         // thanh toán tiền mặt hơặc tại quầy
         // hoặc thanh toán sau khi customer nhận hàng
-        public IActionResult CheckOut(Order newOrder)
+        public IActionResult CheckOut(Customer newCustomer)
         {
-            return View();
+            //TODO: thêm chức năng nhập thông tin khách hàng khi thanh bằng PayPal
+            if (dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
+                                   .ToList()
+                                   .Count() <= 0)
+            {
+                Customer customer = new Customer();
+                customer = newCustomer;
+                dbContext.Customers.Add(customer);
+
+                Order order = new Order();
+                order.customer_ID = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault().customer_ID;
+                order.order_CreateOnDay = DateTime.Now;
+                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
+                order.order_PaymentDate = DateTime.Now;
+                order.order_PaymentMethod = "Thanh toán tiền mặt";
+                order.deliverycost_ID = null;
+                order.promotion_ID = null;
+                foreach (var item in GetCartItems())
+                {
+                    dbContext.OrderDetails.Add(item);
+                    item.order_ID = order.order_ID;
+                }
+                dbContext.Orders.Add(order);
+                dbContext.SaveChanges();
+                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Customer customer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault();
+
+                Order order = new Order();
+                order.customer_ID = customer.customer_ID;
+                order.order_CreateOnDay = DateTime.Now;
+                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
+                order.order_PaymentDate = DateTime.Now;
+                order.order_PaymentMethod = "Thanh toán tiền mặt";
+                order.deliverycost_ID = null;
+                order.promotion_ID = null;
+
+                foreach (var item in GetCartItems())
+                {
+                    dbContext.OrderDetails.Add(item);
+                    item.order_ID = order.order_ID;
+                }
+
+                dbContext.Orders.Add(order);
+                dbContext.SaveChanges();
+                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpGet]
@@ -157,7 +207,6 @@ namespace Ecommerce.Controllers
             if (listCustomer.Count() <= 0)
             {
                 dbContext.Customers.Add(newCustomer);
-                dbContext.SaveChanges();
 
                 Order order = new Order();
                 order.customer_ID = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault().customer_ID;
@@ -167,13 +216,16 @@ namespace Ecommerce.Controllers
                 order.order_PaymentMethod = "Thanh toán tiền mặt";
                 order.deliverycost_ID = null;
                 order.promotion_ID = null;
+
                 foreach (var item in GetCartItems())
                 {
+                    dbContext.OrderDetails.Add(item);
                     item.order_ID = order.order_ID;
                 }
+
                 dbContext.Orders.Add(order);
                 dbContext.SaveChanges();
-
+                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
                 return RedirectToAction("Index");
             }
             else
@@ -188,10 +240,13 @@ namespace Ecommerce.Controllers
                 order.order_PaymentMethod = "Thanh toán tiền mặt";
                 order.deliverycost_ID = null;
                 order.promotion_ID = null;
+
                 foreach (var item in GetCartItems())
                 {
+                    dbContext.OrderDetails.Add(item);
                     item.order_ID = order.order_ID;
                 }
+
                 dbContext.Orders.Add(order);
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Đã mua hàng thành công!!!";

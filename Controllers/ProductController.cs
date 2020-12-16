@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Ecommerce.Models;
 using Ecommerce.Data;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Controllers
 {
+    [AllowAnonymous]
     public class ProductController : Controller
     {
         private readonly ILogger<HomeController> _logger;

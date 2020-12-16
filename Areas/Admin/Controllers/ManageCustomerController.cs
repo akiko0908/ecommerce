@@ -42,7 +42,9 @@ namespace Ecommerce.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Customer newCustomer)
         {
-            if (ModelState.IsValid)
+            if (dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
+                                   .ToList()
+                                   .Count() <= 0)
             {
                 dbContext.Customers.Add(newCustomer);
                 dbContext.SaveChanges();

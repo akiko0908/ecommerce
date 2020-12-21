@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,7 @@ using Ecommerce.PayPal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Ecommerce.Controllers
 {
@@ -138,131 +140,129 @@ namespace Ecommerce.Controllers
 
         // thanh toán tiền mặt hơặc tại quầy
         // hoặc thanh toán sau khi customer nhận hàng
-        public IActionResult CheckOut(Customer newCustomer)
-        {
-            //TODO: thêm chức năng nhập thông tin khách hàng khi thanh bằng PayPal
-            if (dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
-                                   .ToList()
-                                   .Count() <= 0)
-            {
-                Customer customer = new Customer();
-                customer = newCustomer;
-                dbContext.Customers.Add(customer);
-
-                Order order = new Order();
-                order.customer_ID = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault().customer_ID;
-                order.order_CreateOnDay = DateTime.Now;
-                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
-                order.order_PaymentDate = DateTime.Now;
-                order.order_PaymentMethod = "Thanh toán tiền mặt";
-                order.deliverycost_ID = null;
-                order.promotion_ID = null;
-                foreach (var item in GetCartItems())
-                {
-                    dbContext.OrderDetails.Add(item);
-                    item.order_ID = order.order_ID;
-                }
-                dbContext.Orders.Add(order);
-                dbContext.SaveChanges();
-                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                Customer customer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault();
-
-                Order order = new Order();
-                order.customer_ID = customer.customer_ID;
-                order.order_CreateOnDay = DateTime.Now;
-                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
-                order.order_PaymentDate = DateTime.Now;
-                order.order_PaymentMethod = "Thanh toán tiền mặt";
-                order.deliverycost_ID = null;
-                order.promotion_ID = null;
-
-                foreach (var item in GetCartItems())
-                {
-                    dbContext.OrderDetails.Add(item);
-                    item.order_ID = order.order_ID;
-                }
-
-                dbContext.Orders.Add(order);
-                dbContext.SaveChanges();
-                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
-                return RedirectToAction("Index");
-            }
-        }
-
         [HttpGet]
-        public IActionResult InformationCash()
+        public IActionResult CheckOut()
         {
+            ViewBag.listCart = GetCartItems();
+            ViewBag.listDeliveryCost = new SelectList(dbContext.DeliveryCosts.ToList(),
+                                                      "deliverycost_ID",
+                                                      "deliverycost_AreaName");
             return View();
         }
         [HttpPost]
-        public IActionResult InformationCash(Customer newCustomer)
+        public async Task<IActionResult> CheckOutAsync(Customer newCustomer,
+                                      string option_payment,
+                                      string promotion_code, string deliverycost_id)
         {
-            var listCustomer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
-                                                  .ToList();
+            ViewBag.listCart = GetCartItems();
+            ViewBag.listDeliveryCost = new SelectList(dbContext.DeliveryCosts.ToList(),
+                                                      "deliverycost_ID",
+                                                      "deliverycost_AreaName");
 
-            if (listCustomer.Count() <= 0)
+            if (ModelState.IsValid)
             {
-                dbContext.Customers.Add(newCustomer);
-
-                Order order = new Order();
-                order.customer_ID = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault().customer_ID;
-                order.order_CreateOnDay = DateTime.Now;
-                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
-                order.order_PaymentDate = DateTime.Now;
-                order.order_PaymentMethod = "Thanh toán tiền mặt";
-                order.deliverycost_ID = null;
-                order.promotion_ID = null;
-
-                foreach (var item in GetCartItems())
+                // kiểm tra khách hàng đã tồn tại chưa
+                Customer customer = new Customer();
+                if (dbContext.Customers.Where(p => p.customer_Name.Contains(newCustomer.customer_Name))
+                                       .ToList()
+                                       .Count() <= 0)
                 {
-                    dbContext.OrderDetails.Add(item);
-                    item.order_ID = order.order_ID;
+                    // tạo khách hàng mới
+                    customer.customer_Name = newCustomer.customer_Name;
+                    customer.customer_PhoneNumber = newCustomer.customer_PhoneNumber;
+                    customer.customer_Email = newCustomer.customer_Email;
+                    customer.customer_AddressShip = newCustomer.customer_AddressShip;
+
+                    dbContext.Customers.Add(customer);
+                    dbContext.SaveChanges();
+                }
+                else
+                {
+                    customer = dbContext.Customers.Where(p => p.customer_Name.Contains(newCustomer.customer_Name)
+                                                              && p.customer_PhoneNumber == newCustomer.customer_PhoneNumber).FirstOrDefault();
                 }
 
-                dbContext.Orders.Add(order);
-                dbContext.SaveChanges();
-                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                Customer customer = dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name)).FirstOrDefault();
-
+                // tạo đơn hàng cho khách hàng
                 Order order = new Order();
+                order.order_CreateOnDay = DateTime.Now.Date;
+                order.order_Total = GetCartItems().Sum(p => p.orderdetail_Quantity * p.Product.product_Price);
+                order.order_PaymentDate = null;
+                if (option_payment == "cod")
+                {
+                    order.order_PaymentMethod = "Thanh toán COD";
+                    order.StatusOrder = "Chưa xác nhận đơn";
+                }
+                else if (option_payment == "paypal")
+                {
+                    order.order_PaymentMethod = "Thanh toán PayPal";
+                    order.StatusOrder = "Đã xác nhận đơn";
+                }
                 order.customer_ID = customer.customer_ID;
-                order.order_CreateOnDay = DateTime.Now;
-                order.order_Total = GetCartItems().Sum(m => m.orderdetail_Quantity * m.Product.product_Price);
-                order.order_PaymentDate = DateTime.Now;
-                order.order_PaymentMethod = "Thanh toán tiền mặt";
-                order.deliverycost_ID = null;
-                order.promotion_ID = null;
+                if (deliverycost_id == "0")
+                    order.deliverycost_ID = 1;
+                else
+                    order.deliverycost_ID = Convert.ToInt32(deliverycost_id);
 
-                foreach (var item in GetCartItems())
-                {
-                    dbContext.OrderDetails.Add(item);
-                    item.order_ID = order.order_ID;
-                }
+                if (string.IsNullOrEmpty(promotion_code))
+                    order.promotion_ID = 1;
+                else
+                    order.promotion_ID = Convert.ToInt32(promotion_code);
 
                 dbContext.Orders.Add(order);
                 dbContext.SaveChanges();
-                TempData["notifyMsg"] = "Đã mua hàng thành công!!!";
-                return RedirectToAction("Index");
+                foreach (var item in GetCartItems())
+                {
+                    item.order_ID = order.order_ID;
+                    dbContext.OrderDetails.Add(item);
+                    Product productUpdate = dbContext.Products.Find(item.product_ID);
+                    productUpdate.product_Quantity -= item.orderdetail_Quantity;
+                    dbContext.Products.Update(productUpdate);
+                    dbContext.SaveChanges();
+                }
+
+                ///
+                /// TODO: hoàn thành chức năng thông báo khi thành công
+                /// chuyển trang thanh toán paypal khi option_payment là paypal
+                /// chuyển về trang chủ để đơn hàng chờ thanh toán khi option_payment là cod
+                ///
+                if (option_payment == "cod")
+                {
+                    ClearCart();
+                    return RedirectToAction("CheckOutCODSuccess");
+                }
+                else if (option_payment == "paypal")
+                {
+                    int id_order = order.order_ID;
+                    return await CheckOutPayPal(id_order);
+                }
             }
+
+            return View();
+        }
+
+        public IActionResult CheckOutCODSuccess()
+        {
+            /// TODO: hoàn thành view thông báo kết quả thanh toán
+            return View();
         }
 
         ///
         /// yêu cầu tiến hành thanh toán bằng phương thức
-        /// t   hanh toán qua cổng thanh toán PayPal
+        /// thanh toán qua cổng thanh toán PayPal
         ///
         [HttpPost]
-        public async Task<IActionResult> CheckOutPayPal(double total)
+        public async Task<IActionResult> CheckOutPayPal(int id_order)
         {
+            Order order = dbContext.Orders.Include(p => p.Promotion)
+                                          .Include(p => p.DeliveryCost)
+                                          .Where(p => p.order_ID == id_order)
+                                          .FirstOrDefault();
+            double total_order = Convert.ToDouble(order.order_Total
+                                                  + (order.Promotion.promotion_Percent * order.order_Total)
+                                                  + order.DeliveryCost.deliverycost_Cost);
+
             var paypalAPI = new PayPalAPI(configuration);
-            string url = await paypalAPI.GetRedirectURLToPayPal(total, "USD");
+            string url = await paypalAPI.GetRedirectURLToPayPal(total_order, "USD");
             return Redirect(url);
         }
 

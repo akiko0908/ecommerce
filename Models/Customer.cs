@@ -17,21 +17,19 @@ namespace Ecommerce.Models
         [Display(Name = "Tên khách hàng")]
         public string customer_Name { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập số điện thoại khách hàng!!!")]
+        [Required(ErrorMessage = "Phải nhập số điện thoại!!!")]
         [Display(Name = "Số điện thoại")]
-        [Range(10, 11, ErrorMessage = "Số điện thoại phải có 10 hoặc 11 chữ số!!!")]
+        [StringLength(25, MinimumLength = 10, ErrorMessage = "Số điện thoại từ 10 đến 11 số!!!")]
         public string customer_PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập email!!!")]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string customer_Email { get; set; }
 
         [Required(ErrorMessage = "Nhập địa chỉ giao hàng tại đây!!!")]
-        [Display(Name = "Địa chỉ giao hàng 1")]
-        public string customer_AddressShip1 { get; set; }
-
-        [Display(Name = "Địa chỉ giao hàng 2")]
-        public string customer_AddressShip2 { get; set; }
+        [Display(Name = "Địa chỉ giao hàng")]
+        public string customer_AddressShip { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

@@ -45,10 +45,10 @@
                     <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="GetOrderDetails"
                         asp-route-id="@item.order_ID">Chi tiết đơn hàng</a>
                 </td>
-                <td>@item.DeliveryCost.deliverycost_AreaName</td>
                 <td>@item.order_CreateOnDay</td>
                 <td>@item.order_PaymentDate</td>
                 <td>@item.order_PaymentMethod</td>
+                <td>@item.DeliveryCost.deliverycost_AreaName</td>
                 <td>@item.DeliveryCost.deliverycost_Cost</td>
                 <td>@item.Promotion.promotion_Percent * @item.order_Total </td>
                 <td>

@@ -11,7 +11,6 @@
     $('#notifiMessage').fadeOut('slow');
   }, 3000);
 </script>
-
 @if (ViewBag.RemoveMsg != null)
 {
   <div id="notifiMessage" class="alert alert-success" role="alert">
@@ -19,6 +18,9 @@
   </div>
 }
 
+<a asp-controller="Home" asp-action="Index" style="color: blue;"><span class="fa fa-long-arrow-left"></span> Tiếp tục
+  mua
+  hàng</a>
 @if (Model.Count > 0)
 {
   int stt = 1;
@@ -41,12 +43,9 @@
         <td>@(stt++)</td>
         <td>@cartitem.Product.product_Name</td>
         <td>@(cartitem.Product.product_Price.ToString("n0"))</td>
-        <td>
-          <input asp-for="@cartitem.orderdetail_Quantity" id="@($"quantity-{cartitem.Product.product_ID}")" />
-        </td>
+        <td>@(cartitem.orderdetail_Quantity) </td>
         <td>@(thanhtien.ToString("n0"))</td>
         <td>
-          <button class="btn btn-success updatecartitem" data-productid="@cartitem.Product.product_ID">Cập nhật</button>
           <a asp-controller="Cart" asp-action="RemoveCart" asp-route-productid="@cartitem.Product.product_ID"
             class="btn btn-danger">Xóa</a>
         </td>
@@ -54,27 +53,16 @@
     }
     <tr>
       <td colspan="4" class="text-right">Tổng tiền</td>
-      <td>@(total.ToString("n0"))</td>
+      <td>@(total.ToString("n0")+" vnđ")</td>
       <td></td>
     </tr>
   </table>
 
-  <div>
-    <h3>Phương thức thanh toán</h3>
-    <form asp-controller="Cart" method="post">
-      <a asp-action="InformationCash" class="btn btn-success">Thanh toán tiền mặt</a>
-      <button type="submit" class="btn btn-success" asp-action="CheckOutPayPal" asp-route-total="@total">Thanh
-        toán PayPal</button>
-    </form>
+  <div class="btn__payment">
+    <a asp-controller="Cart" asp-action="CheckOut" class="btn btn-success">Thanh Toán</a>
   </div>
 }
 else
 {
   <p class="alert alert-danger">Giỏ hàng trống</p>
 }
-<hr>
-<div class="backto__home btn btn-info ">
-  <h3>
-    <a class="shopping__continute" asp-controller="Home" asp-action="Index">Tiếp tục mua sắm</a>
-  </h3>
-</div>

@@ -13,6 +13,7 @@ namespace Ecommerce.Models
         [Display(Name = "Mã Hãng sản xuất")]
         public int brand_ID { get; set; }
 
+        [Required(ErrorMessage = "Phải nhập tên Thương hiệu!!!")]
         [Display(Name = "Tên hãng sản xuất")]
         public string brand_Name { get; set; }
 

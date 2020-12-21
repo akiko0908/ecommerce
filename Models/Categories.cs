@@ -13,6 +13,7 @@ namespace Ecommerce.Models
         [Display(Name = "Mã loại SP")]
         public int categories_ID { get; set; }
 
+        [Required(ErrorMessage = "Phải nhập Tên loại sản phẩm!!!")]
         [Display(Name = "Tên loại sản phẩm")]
         public string categories_Name { get; set; }
 

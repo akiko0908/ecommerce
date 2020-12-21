@@ -6,8 +6,7 @@
 <h2>
     Trạng thái thanh toán của hóa đơn:
     <form method="POST" asp-controller="Cart" asp-action="ConfirmPayment">
-        @* <input type="submit" name="statuspayment" value="@ViewBag.resultSatus" > *@
-        @* <input type="submit" value="Submit" class="btn btn-success" > *@
-        <button type="submit" name="statuspayment" value="@ViewBag.resultSatus">Xác nhận</button>
+        <button type="submit" name="statuspayment" value="@ViewBag.resultSatus" class="btn btn-success">Xác
+            nhận</button>
     </form>
 </h2>

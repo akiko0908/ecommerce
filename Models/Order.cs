@@ -26,10 +26,13 @@ namespace Ecommerce.Models
         [Display(Name = "Ngày thành toán")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime order_PaymentDate { get; set; }
+        public DateTime? order_PaymentDate { get; set; }
 
         [Display(Name = "Phương thức thanh toán")]
         public string order_PaymentMethod { get; set; }
+
+        [Display(Name = "Trạng thái đơn hàng")]
+        public string StatusOrder { get; set; }
 
         public int? customer_ID { get; set; }
         [ForeignKey("customer_ID")]

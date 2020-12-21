@@ -96,15 +96,14 @@ namespace Ecommerce.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 Customer oldCustomer = dbContext.Customers.Find(id);
 
                 oldCustomer.customer_Name = newCustomer.customer_Name;
                 oldCustomer.customer_PhoneNumber = newCustomer.customer_PhoneNumber;
                 oldCustomer.customer_Email = newCustomer.customer_Email;
-                oldCustomer.customer_AddressShip1 = newCustomer.customer_AddressShip1;
-                oldCustomer.customer_AddressShip2 = newCustomer.customer_AddressShip2;
+                oldCustomer.customer_AddressShip = newCustomer.customer_AddressShip;
 
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Cập nhật thông tin KHÁCH HÀNG thành công!!!";

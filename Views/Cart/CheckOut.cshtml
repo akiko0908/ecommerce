@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "Information Payment Page";
+    decimal total = 0;
+}
+@model Ecommerce.Models.Customer
+
+<h2>Thông tin thanh toán</h2>
+
+@if (ViewBag.listCart.Count > 0)
+{
+    int stt = 1;
+
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+        @foreach (var cartitem in ViewBag.listCart)
+        {
+            var thanhtien = cartitem.orderdetail_Quantity * cartitem.Product.product_Price;
+            total += thanhtien;
+            <tr>
+                <td>@(stt++)</td>
+                <td>@cartitem.Product.product_Name</td>
+                <td>@(cartitem.Product.product_Price.ToString("n0"))</td>
+                <td>@cartitem.orderdetail_Quantity</td>
+                <td>@(thanhtien.ToString("n0"))</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4" class="text-right">Tổng tiền</td>
+            <td>@(total.ToString("n0")+" vnđ")</td>
+            <td></td>
+        </tr>
+    </table>
+}
+<hr>
+
+<div>
+    <form asp-controller="Cart" asp-action="CheckOut" method="POST">
+        <h6>Thông tin khách hàng</h6>
+        <div class="form-group row">
+            <div class="form-group row col-sm-5 offset-sm-1">
+                <label for="promotion" class="col-sm-4 offset-sm-1 col-form-label">Mã giảm giá</label>
+                <div class="col-sm-6">
+                    <input type="text" id="promotion" name="promotion_code" value="" placeholder="Nhập mã giảm giá..."
+                        class="form-control">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <input type="radio" id="cod" name="option_payment" value="cod" checked>
+                <label for="cod">Thanh toán COD (Ship Code)</label>
+            </div>
+
+            <div class="col-sm-3">
+                <input type="radio" id="paypal" name="option_payment" value="paypal">
+                <label for="paypal">Thanh toán PayPal</label>
+            </div>
+        </div>
+
+        <div class="form-group row offset-sm-1">
+            <label for="deliverycost" class="col-sm-2">Vùng vận chuyển</label>
+            <select asp-items="@ViewBag.listDeliveryCost" id="deliverycost" name="deliverycost_id"
+                class="form-control col-sm-4">
+                <option value="0">Choose location...</option>
+            </select>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="customer_Name" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="customer_Name" class="form-control">
+            </div>
+            <span asp-validation-for="customer_Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="customer_PhoneNumber" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="customer_PhoneNumber" class="form-control">
+            </div>
+            <span asp-validation-for="customer_PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="customer_Email" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="customer_Email" class="form-control">
+            </div>
+            <span asp-validation-for="customer_Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="customer_AddressShip" class="col-sm-2 offset-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <input type="text" asp-for="customer_AddressShip" class="form-control">
+            </div>
+            <span asp-validation-for="customer_AddressShip" class="text-danger"></span>
+        </div>
+
+        <input type="submit" class="btn btn-success btn__payment" value="Xác nhận">
+    </form>
+</div>

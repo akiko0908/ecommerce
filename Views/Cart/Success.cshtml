@@ -1,12 +1,28 @@
 @{
+    Layout = "";
     ViewData["Title"] = "Thông báo thanh toán";
 }
 
-<h3>Transaction Details</h3>
-<h2>
-    Trạng thái thanh toán của hóa đơn:
-    <form method="POST" asp-controller="Cart" asp-action="ConfirmPayment">
-        <button type="submit" name="statuspayment" value="@ViewBag.resultSatus" class="btn btn-success">Xác
-            nhận</button>
-    </form>
-</h2>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/font-awesome-4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+@if (@ViewBag.resultSatus == "VERIFIED")
+{
+    <div class="center">
+        <img src="~/images/icon-success.png" alt="icon-success.png">
+        <h3>Chúc mừng bạn thanh toán thành công!!!</h3>
+        <a asp-controller="Home" asp-action="Index">
+            <strong>Quay lại trang chủ tiếp tục mua sắm <span class="fa fa-long-arrow-right"></span></strong>
+        </a>
+    </div>
+}
+else
+{
+    <div class="center">
+        <img src="~/images/icon-fail.png" alt="icon-success.png">
+        <h2>Rất tiếc quá trình thanh toán thất bại!!!</h2>
+        <a asp-controller="Home" asp-action="Index">Quay lại trang chủ tiếp tục mua sắm <span
+                class="fa fa-long-arrow-right"></span></a>
+    </div>
+}

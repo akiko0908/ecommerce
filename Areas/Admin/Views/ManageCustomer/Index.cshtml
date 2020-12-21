@@ -20,10 +20,34 @@
     }, 2500);
 </script>
 <hr>
-<div>
-    <a asp-action="Create" class="btn btn-success">Tạo mới Khách hàng</a>
+<div class="row">
+    <div class="col-sm-2 offset-sm-1">
+        <a asp-action="Create" class="btn btn-success">Tạo mới Khách hàng</a>
+    </div>
+
+    <form asp-action="Index" method="GET">
+        <div class="row">
+            <div class="col-sm-5 row">
+                <label for="customer_name" class="col-sm-5 col-form-label">Tên khách hàng</label>
+                <div class="col-sm-7">
+                    <input type="text" id="customer_name" name="search_name" value="" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-sm-5 row">
+                <label for="customer_phone" class="col-sm-5 col-form-label">Số điện thoại</label>
+                <div class="col-sm-7">
+                    <input type="text" id="customer_phone" name="search_phone" value="" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <input type="submit" value="Tìm kiếm">
+            </div>
+        </div>
+    </form>
 </div>
-<div style="margin: 0 auto; width: 40em;">
+<div style="margin: 0 auto; width: 70em; margin-top: 3px;">
     <table class="table">
         <tr>
             <th>Mã khách hàng</th>
@@ -31,7 +55,6 @@
             <th>Số điện thoại</th>
             <th>Email</th>
             <th>Địa chỉ 1</th>
-            <th>Địa chỉ 2</th>
             <th></th>
         </tr>
         @foreach (var item in Model)

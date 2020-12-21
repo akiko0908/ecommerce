@@ -26,12 +26,11 @@ namespace Ecommerce.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var listOrder = dbContext.Orders.Include(m => m.Customer)
-                                            .Include(m => m.DeliveryCost)
-                                            .Include(m => m.Promotion)
-                                            .Include(m => m.OrderDetails)
-                                            .ToList();
-            return View(listOrder);
+            var listOrder = dbContext.Orders.Include(p => p.Customer)
+                                            .Include(p => p.DeliveryCost)
+                                            .Include(p => p.Promotion)
+                                            .Include(p => p.OrderDetails);
+            return View(listOrder.ToList());
         }
 
         [HttpGet]

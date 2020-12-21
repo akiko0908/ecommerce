@@ -1,6 +1,6 @@
 @{
     Layout = "_LayoutAdmin";
-    ViewData["TitleAdmin"] = "Quản lý Loại sản phẩm";
+    ViewData["TitleAdmin"] = "Quản lý Đơn hàng";
 }
 @model IEnumerable<Ecommerce.Models.Order>
 
@@ -20,20 +20,19 @@
     }, 2500);
 </script>
 <hr>
-
-<div style="margin: 0 auto; width: 40em;">
+<div style="margin: 0 auto;">
     <table class="table">
         <tr>
-            <th>Mã Đơn hàng</th>
+            <th>Mã đơn hàng</th>
             <th>Tên Khách hàng</th>
-            <th>Chi tiết đơn hàng</th>
-            <th>Khu vực giao hàng</th>
-            <th>Ngày tạo</th>
+            <th>Ngày tạo đơn</th>
             <th>Ngày thanh toán</th>
             <th>Phương thức thanh toán</th>
-            <th>Phí giao hàng</th>
+            <th>Khu vực giao</th>
+            <th>Phí giao</th>
             <th>Chiết khấu</th>
             <th>Tổng tiền</th>
+            <th>Tình trạng đơn</th>
             <th></th>
         </tr>
         @foreach (var item in Model)
@@ -41,25 +40,41 @@
             <tr>
                 <td>@item.order_ID</td>
                 <td>@item.Customer.customer_Name</td>
-                <td>
-                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="GetOrderDetails"
-                        asp-route-id="@item.order_ID">Chi tiết đơn hàng</a>
-                </td>
-                <td>@item.order_CreateOnDay</td>
+                <td>@item.order_CreateOnDay.ToString("dd/MM/yyyy")</td>
                 <td>@item.order_PaymentDate</td>
                 <td>@item.order_PaymentMethod</td>
                 <td>@item.DeliveryCost.deliverycost_AreaName</td>
-                <td>@item.DeliveryCost.deliverycost_Cost</td>
-                <td>@item.Promotion.promotion_Percent * @item.order_Total </td>
-                <td>
-                    @item.order_Total + item.DeliveryCost.deliverycost_Cost + (item.Promotion.promotion_Percent
-                    * item.order_Total)</td>
-                <td>
-                    <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
-                        asp-route-id="@item.order_ID">Edit</a> |
-                    <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
-                        asp-route-id="@item.order_ID">Delete</a>
-                </td>
+                <td>@item.DeliveryCost.deliverycost_Cost.ToString("n0")</td>
+                <td>@((item.Promotion.promotion_Percent * item.order_Total).ToString("n0"))</td>
+                <td>@item.order_Total.ToString("n0")</td>
+                <td>@item.StatusOrder</td>
+                @switch (item.StatusOrder)
+                {
+                    case "Chưa xác nhận đơn":
+                        <td>
+                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
+                                asp-route-id="@item.order_ID">Xác nhận đơn</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                                asp-route-id="@item.order_ID">Delete</a>
+                        </td>
+                        break;
+
+                    case "Đã xác nhận đơn":
+                        <td>
+                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
+                                asp-route-id="@item.order_ID">Đã thanh toán</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                                asp-route-id="@item.order_ID">Delete</a>
+                        </td>
+                        break;
+
+                    case "Đã thanh toán":
+                        <td>
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                                asp-route-id="@item.order_ID">Delete</a>
+                        </td>
+                        break;
+                }
             </tr>
         }
     </table>

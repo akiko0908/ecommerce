@@ -21,14 +21,8 @@
 </script>
 <hr>
 
-<<<<<<< HEAD
 <a asp-controller="ManagePromotion " asp-action="Create" class="btn btn-success">Thêm mới Khuyến mãi</a>
 
-=======
-<div>
-    <a asp-action="Create" class="btn btn-success">Thêm mới Khuyến mãi</a>
-</div>
->>>>>>> feature/identity
 <div style="margin: 0 auto; width: 40em;">
     <table class="table">
         <tr>
@@ -43,7 +37,7 @@
                 <td>@item.promotion_ID</td>
                 <td>@item.promotion_Name</td>
                 <td>@item.promotion_Percent</td>
-                <td>
+                <td style="width: 200px;">
                     <a class="btn btn-info" asp-area="Admin" asp-controller="ManagePromotion" asp-action="Edit"
                         asp-route-id="@item.promotion_ID">Edit</a> |
                     <a class="btn btn-danger" asp-area="Admin" asp-controller="ManagePromotion" asp-action="Delete"

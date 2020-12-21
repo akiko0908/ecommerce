@@ -24,14 +24,30 @@ namespace Ecommerce.Areas.Admin.Controllers
         }
 
         // TODO: hoàn chỉnh các chức quản lý thông tin
-        public IActionResult Index()
+        public IActionResult Index(string search_name, string search_phone)
         {
             var listCustomers = dbContext.Customers.ToList();
             if (TempData["notifyMsg"] != null)
             {
                 ViewBag.notifyMsg = TempData["notifyMsg"];
             }
-            return View(listCustomers);
+
+            if (search_name != null && search_phone == null)
+            {
+                listCustomers = listCustomers.Where(p => p.customer_Name.Contains(search_name)).ToList();
+            }
+
+            if (search_name == null && search_phone != null)
+            {
+                listCustomers = listCustomers.Where(p => p.customer_Name.Contains(search_phone)).ToList();
+            }
+
+            if (search_name != null && search_phone != null)
+            {
+                listCustomers = listCustomers.Where(p => p.customer_Name.Contains(search_name) && p.customer_PhoneNumber == search_phone).ToList();
+            }
+
+            return View(listCustomers.ToList());
         }
 
         [HttpGet]
@@ -42,14 +58,17 @@ namespace Ecommerce.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Customer newCustomer)
         {
-            if (dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
-                                   .ToList()
-                                   .Count() <= 0)
+            if (ModelState.IsValid)
             {
-                dbContext.Customers.Add(newCustomer);
-                dbContext.SaveChanges();
-                TempData["notifyMsg"] = "Tạo Khách hàng mới thành công!!!";
-                return RedirectToAction("Index");
+                if (dbContext.Customers.Where(m => m.customer_Name.Contains(newCustomer.customer_Name))
+                                       .ToList()
+                                       .Count() <= 0)
+                {
+                    dbContext.Customers.Add(newCustomer);
+                    dbContext.SaveChanges();
+                    TempData["notifyMsg"] = "Tạo Khách hàng mới thành công!!!";
+                    return RedirectToAction("Index");
+                }
             }
             return View(newCustomer);
         }

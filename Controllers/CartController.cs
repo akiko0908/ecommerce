@@ -150,9 +150,10 @@ namespace Ecommerce.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CheckOutAsync(Customer newCustomer,
-                                      string option_payment,
-                                      string promotion_code, string deliverycost_id)
+        public async Task<IActionResult> CheckOut(Customer newCustomer,
+                                                  string option_payment,
+                                                  string promotion_code,
+                                                  string deliverycost_id)
         {
             ViewBag.listCart = GetCartItems();
             ViewBag.listDeliveryCost = new SelectList(dbContext.DeliveryCosts.ToList(),
@@ -220,11 +221,6 @@ namespace Ecommerce.Controllers
                     dbContext.SaveChanges();
                 }
 
-                ///
-                /// TODO: hoàn thành chức năng thông báo khi thành công
-                /// chuyển trang thanh toán paypal khi option_payment là paypal
-                /// chuyển về trang chủ để đơn hàng chờ thanh toán khi option_payment là cod
-                ///
                 if (option_payment == "cod")
                 {
                     ClearCart();
@@ -242,7 +238,7 @@ namespace Ecommerce.Controllers
 
         public IActionResult CheckOutCODSuccess()
         {
-            /// TODO: hoàn thành view thông báo kết quả thanh toán
+            ViewData["status_payment"] = "success";
             return View();
         }
 
@@ -258,8 +254,10 @@ namespace Ecommerce.Controllers
                                           .Where(p => p.order_ID == id_order)
                                           .FirstOrDefault();
             double total_order = Convert.ToDouble(order.order_Total
-                                                  + (order.Promotion.promotion_Percent * order.order_Total)
+                                                  - (order.Promotion.promotion_Percent * order.order_Total)
                                                   + order.DeliveryCost.deliverycost_Cost);
+
+            TempData["order_id"] = id_order;
 
             var paypalAPI = new PayPalAPI(configuration);
             string url = await paypalAPI.GetRedirectURLToPayPal(total_order, "USD");
@@ -272,21 +270,20 @@ namespace Ecommerce.Controllers
             var paypalAPI = new PayPalAPI(configuration);
             PayPalPaymentExecuteResponse result = await paypalAPI.ExecutePayment(paymentID, payerID);
 
+            if (result.payer.status == "VERIFIED")
+            {
+                var order_id = TempData["order_id"];
+                Order order = dbContext.Orders.Find(order_id);
+                order.StatusOrder = "Đã thanh toán";
+                order.order_PaymentDate = DateTime.Now.Date;
+                dbContext.Orders.Update(order);
+                dbContext.SaveChanges();
+                ClearCart();
+            }
+
             // Debug for result of code
             ViewBag.resultSatus = result.payer.status.ToString();
             return View("Success");
-        }
-
-        // thông báo và xác nhận thanh toán thành công
-        [HttpPost]
-        public IActionResult ConfirmPayment(string statuspayment)
-        {
-            if (statuspayment == "VERIFIED")
-            {
-                TempData["AccessMessage"] = "Bạn đã thanh toán thành công đơn hàng!!!";
-                return RedirectToAction("Index", "Cart");
-            }
-            return RedirectToAction("Index", "Cart");
         }
 
         // hủy thanh toán khi thanh toán thất bại

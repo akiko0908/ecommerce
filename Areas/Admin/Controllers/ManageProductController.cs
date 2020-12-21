@@ -182,6 +182,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                 oldProduct.supplier_ID = newProduct.supplier_ID;
                 oldProduct.categories_ID = newProduct.categories_ID;
 
+                dbContext.Products.Update(oldProduct);
                 dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }

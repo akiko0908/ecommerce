@@ -104,6 +104,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                     oldPromotion.promotion_Name = newPromotion.promotion_Name;
                     oldPromotion.promotion_Percent = newPromotion.promotion_Percent;
 
+                    dbContext.Promotions.Update(oldPromotion);
                     dbContext.SaveChanges();
                     TempData["notifyMsg"] = "Cập thông tin Khuyến mãi thành công!!!";
                     return RedirectToAction("Index");

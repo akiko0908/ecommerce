@@ -253,6 +253,7 @@ namespace Ecommerce.Controllers
                                           .Include(p => p.DeliveryCost)
                                           .Where(p => p.order_ID == id_order)
                                           .FirstOrDefault();
+
             double total_order = Convert.ToDouble(order.order_Total
                                                   - (order.Promotion.promotion_Percent * order.order_Total)
                                                   + order.DeliveryCost.deliverycost_Cost);

@@ -99,6 +99,8 @@ namespace Ecommerce.Areas.Admin.Controllers
                 if (oldOS.hdh_ID == newOS.hdh_ID)
                 {
                     oldOS.hdh_Name = newOS.hdh_Name;
+
+                    dbContext.HeDieuHanhs.Update(oldOS);
                     dbContext.SaveChanges();
                     TempData["notifyMsg"] = "Cập nhật thông tin HỆ ĐIỀU HÀNH thành công!!!";
                     return RedirectToAction("Index");

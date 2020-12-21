@@ -124,6 +124,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                 oldCustomer.customer_Email = newCustomer.customer_Email;
                 oldCustomer.customer_AddressShip = newCustomer.customer_AddressShip;
 
+                dbContext.Customers.Update(oldCustomer);
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Cập nhật thông tin KHÁCH HÀNG thành công!!!";
                 return RedirectToAction("Index");

@@ -103,6 +103,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                 {
                     oldSupplier.supplier_Name = newSupplier.supplier_Name;
 
+                    dbContext.Suppliers.Update(oldSupplier);
                     dbContext.SaveChanges();
                     TempData["notifyMsg"] = "Cập nhật thông tin Nhà cung cấp thành công!!!";
                     return RedirectToAction("Index");

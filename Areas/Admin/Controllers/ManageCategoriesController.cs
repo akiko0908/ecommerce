@@ -75,6 +75,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                 Categories oldCategprries = dbContext.Categories.Find(id);
 
                 oldCategprries.categories_Name = newCategories.categories_Name;
+                dbContext.Categories.Update(oldCategprries);
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Cập nhật thông tin Loại sản phẩm thành công!!!";
                 return RedirectToAction("Index");

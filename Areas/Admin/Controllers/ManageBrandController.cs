@@ -75,6 +75,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                 Brand oldBrand = dbContext.Brands.Find(id);
 
                 oldBrand.brand_Name = updateBrand.brand_Name;
+                dbContext.Brands.Update(oldBrand);
                 dbContext.SaveChanges();
                 TempData["notifyMsg"] = "Cập nhật thông tin Thương hiệu thành công!!!";
                 return RedirectToAction("Index");

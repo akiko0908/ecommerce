@@ -101,6 +101,7 @@ namespace Ecommerce.Areas.Admin.Controllers
                     oldDeliveryCost.deliverycost_AreaName = newDeliveryCost.deliverycost_AreaName;
                     oldDeliveryCost.deliverycost_Cost = newDeliveryCost.deliverycost_Cost;
 
+                    dbContext.DeliveryCosts.Update(oldDeliveryCost);
                     dbContext.SaveChanges();
                     TempData["notifyMsg"] = "Cập nhật THÔNG TIN DỊCH VỤ GIAO HÀNG thành công!!!";
                     return RedirectToAction("Index");

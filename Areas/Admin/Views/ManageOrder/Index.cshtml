@@ -52,25 +52,25 @@
                 {
                     case "Chưa xác nhận đơn":
                         <td>
-                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
-                                asp-route-id="@item.order_ID">Xác nhận đơn</a> |
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="Edit"
+                                asp-route-id="@item.order_ID" asp-route-statusOrder="Đã xác nhận đơn">Xác nhận đơn</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
                                 asp-route-id="@item.order_ID">Delete</a>
                         </td>
                         break;
 
                     case "Đã xác nhận đơn":
                         <td>
-                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageCategories" asp-action="Edit"
-                                asp-route-id="@item.order_ID">Đã thanh toán</a> |
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="Edit"
+                                asp-route-id="@item.order_ID" asp-route-statusOrder="Đã thanh toán">Đã thanh toán</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
                                 asp-route-id="@item.order_ID">Delete</a>
                         </td>
                         break;
 
                     case "Đã thanh toán":
                         <td>
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageCategories" asp-action="Delete"
+                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
                                 asp-route-id="@item.order_ID">Delete</a>
                         </td>
                         break;

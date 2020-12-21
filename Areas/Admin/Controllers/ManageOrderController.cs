@@ -59,5 +59,23 @@ namespace Ecommerce.Areas.Admin.Controllers
             var listOrderDetails = dbContext.OrderDetails.Include(m => m.Order).Where(m => m.Order.order_ID == orderID).ToList();
             return View(listOrderDetails);
         }
+
+        public IActionResult Edit(int? id, string statusOrder)
+        {
+            if (id != null && statusOrder != null)
+            {
+                Order order = dbContext.Orders.Find(id);
+                order.StatusOrder = statusOrder;
+                if (statusOrder == "Đã thanh toán")
+                {
+                    order.order_PaymentDate = DateTime.Now;
+                }
+                dbContext.Orders.Update(order);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return NotFound("Không tìm thấy đối tượng!!!");
+        }
     }
 }

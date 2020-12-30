@@ -225,7 +225,6 @@ C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\A
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Account\SignUp.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Cart\InformationCash.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Cart\Success.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Home\Help.cshtml.g.cs
@@ -252,8 +251,5 @@ C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\staticwebasse
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Ecommerce.dll
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Ecommerce.pdb
 C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Ecommerce.genruntimeconfig.cache
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Release\netcoreapp3.1\publish\web.config
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Release\netcoreapp3.1\publish\appsettings.Development.json
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Release\netcoreapp3.1\publish\appsettings.json
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Release\netcoreapp3.1\publish\Ecommerce.deps.json
-C:\Users\Admin\DataUser\HUFLIT\Ecommerce\bin\Release\netcoreapp3.1\publish\Ecommerce.runtimeconfig.json
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Cart\CheckOut.cshtml.g.cs
+C:\Users\Admin\DataUser\HUFLIT\Ecommerce\obj\Release\netcoreapp3.1\Razor\Views\Cart\CheckOutCODSuccess.cshtml.g.cs

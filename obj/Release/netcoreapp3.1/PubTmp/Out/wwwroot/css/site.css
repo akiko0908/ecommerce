@@ -209,10 +209,6 @@ a.dropdown__text {
     text-decoration: none;
 }
 
-.backto__home {
-    margin-left: 26em;
-}
-
 .shopping__continute {
     align-items: center;
     color: whitesmoke;
@@ -221,4 +217,21 @@ a.dropdown__text {
 .shopping__continute:hover {
     background-color: none;
     color: #000000;
+}
+
+.btn__payment {
+    margin: 0 auto;
+    display: flex;
+}
+
+.btn__payment a {
+    margin: 0 auto;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
 }

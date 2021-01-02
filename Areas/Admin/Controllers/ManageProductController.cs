@@ -15,7 +15,6 @@ using Ecommerce.Models;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class ManageProductController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -25,6 +24,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             dbContext = _context;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var lsProduct = dbContext.Products.Include(x => x.Brand)

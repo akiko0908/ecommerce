@@ -150,7 +150,7 @@ namespace Ecommerce.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CheckOut(Customer newCustomer,
+        public IActionResult CheckOut(Customer newCustomer,
                                                   string option_payment,
                                                   string promotion_code,
                                                   string deliverycost_id)
@@ -229,7 +229,7 @@ namespace Ecommerce.Controllers
                 else if (option_payment == "paypal")
                 {
                     int id_order = order.order_ID;
-                    return await CheckOutPayPal(id_order);
+                    return CheckOutPayPal(id_order);
                 }
             }
 
@@ -247,7 +247,7 @@ namespace Ecommerce.Controllers
         /// thanh toán qua cổng thanh toán PayPal
         ///
         [HttpPost]
-        public async Task<IActionResult> CheckOutPayPal(int id_order)
+        public IActionResult CheckOutPayPal(int id_order)
         {
             Order order = dbContext.Orders.Include(p => p.Promotion)
                                           .Include(p => p.DeliveryCost)
@@ -261,7 +261,7 @@ namespace Ecommerce.Controllers
             TempData["order_id"] = id_order;
 
             var paypalAPI = new PayPalAPI(configuration);
-            string url = await paypalAPI.GetRedirectURLToPayPal(total_order, "USD");
+            string url = paypalAPI.GetRedirectURLToPayPal(total_order, "USD");
             return Redirect(url);
         }
 

@@ -24,7 +24,7 @@ namespace Ecommerce.PayPal
             configuration = _configuration;
         }
 
-        public async Task<string> GetRedirectURLToPayPal(double total, string currency)
+        public string GetRedirectURLToPayPal(double total, string currency)
         {
             try
             {

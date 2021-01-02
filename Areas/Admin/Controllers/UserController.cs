@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -31,6 +30,7 @@ namespace Ecommerce.Areas.Admin.Controllers
         }
 
         // TODO: cần hoàn thành các chức năng quản lý tài khoản dưới quyền truy cập là Administrator
+        [Authorize]
         public IActionResult Index()
         {
             var listUser = userManager.GetUsersInRoleAsync("Administrator").ToString();

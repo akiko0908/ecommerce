@@ -7,6 +7,18 @@
 <div class="manage_title">
     <h3>Tạo mới Role</h3>
 </div>
+@if (ViewBag.notifyMsg != null)
+{
+    <div id="nottifyMsg" class="alert alert-success" role="alert">
+        @ViewBag.notifyMsg
+    </div>
+}
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#nottifyMsg').fadeOut('slow');
+    }, 2500);
+</script>
+
 <hr>
 
 <div class="manage_content">

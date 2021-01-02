@@ -15,27 +15,37 @@ using Ecommerce.Areas.Admin.Models.ViewModel;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
 
-        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager)
+        public RoleController(RoleManager<IdentityRole> roleManager,
+                              UserManager<AppUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var roles = _roleManager.Roles.ToList();
+
+            if (TempData["notifyMsg"] != null)
+            {
+                ViewBag.notifyMsg = TempData["notifyMsg"];
+            }
             return View(roles);
         }
 
         [HttpGet]
         public IActionResult CreateRole()
         {
+            if (TempData["notifyMsg"] != null)
+            {
+                ViewBag.notifyMsg = TempData["notifyMsg"];
+            }
             return View();
         }
         [HttpPost]
@@ -43,13 +53,15 @@ namespace Ecommerce.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityRole identityRole = new IdentityRole { Name = role.RoleName };
+                // tạo role mới với tên role được nhập đồng thời hash idRole
+                IdentityRole newRole = new IdentityRole { Name = role.RoleName };
 
-                IdentityResult result = await _roleManager.CreateAsync(identityRole);
+                IdentityResult result = await _roleManager.CreateAsync(newRole);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Role");
+                    TempData["notifyMsg"] = "Tạo mới Role thành công!!!";
+                    return RedirectToAction("Index");
                 }
 
                 foreach (IdentityError error in result.Errors)
@@ -57,35 +69,39 @@ namespace Ecommerce.Areas.Admin.Controllers
                     ModelState.AddModelError("", error.Description);
                 }
             }
-
-            return View(role);
+            TempData["notifyMsg"] = "Thất bại do Role đã tồn tại hoặc lý do khác!!!";
+            return RedirectToAction("CreateRole");
         }
 
         [HttpGet]
-        public IActionResult EditRole()
+        public async Task<IActionResult> DeleteRole(string id)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult EditRole(IdentityRole role)
-        {
-            return View();
+            IdentityRole role = await _roleManager.FindByIdAsync(id);
+
+            if (role != null)
+            {
+                return View(role);
+            }
+
+            return View(NotFound());
         }
 
-        [HttpGet]
-        public IActionResult DeleteRole()
+        public async Task<IActionResult> ConfirmDelete(string id)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult ConfirmDeleteRole(IdentityRole role)
-        {
-            return View();
+            IdentityRole role = await _roleManager.FindByIdAsync(id);
+
+            if (role != null)
+            {
+                IdentityResult result = await _roleManager.DeleteAsync(role);
+
+                if (result.Succeeded)
+                {
+                    TempData["notifyMsg"] = "Xóa Role thành công!!!";
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("DeleteRole");
         }
 
-        public IActionResult AssignRole()
-        {
-            return View();
-        }
     }
 }

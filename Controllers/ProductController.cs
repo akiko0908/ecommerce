@@ -15,12 +15,10 @@ namespace Ecommerce.Controllers
     [AllowAnonymous]
     public class ProductController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext db;
 
-        public ProductController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context)
         {
-            _logger = logger;
             db = context;
         }
 
@@ -30,7 +28,8 @@ namespace Ecommerce.Controllers
                                          .Include(m => m.Categories)
                                          .Include(m => m.HeDieuHanh)
                                          .Include(m => m.Supplier)
-                                         .Where(p => p.product_ID == id).FirstOrDefault();
+                                         .Where(p => p.product_ID == id)
+                                         .FirstOrDefault();
             return View(product);
         }
     }

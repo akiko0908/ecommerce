@@ -29,7 +29,8 @@ namespace Ecommerce.Controllers
             var lsProducts = db.Products.Include(m => m.Brand)
                                         .Include(m => m.Categories)
                                         .Include(m => m.HeDieuHanh)
-                                        .Include(m => m.Supplier);
+                                        .Include(m => m.Supplier)
+                                        .Where(p => p.product_Quantity > 0);
             if (TempData["SuccessMessage"] != null)
             {
                 ViewBag.NotificationMessage = TempData["SuccessMessage"];
@@ -52,7 +53,9 @@ namespace Ecommerce.Controllers
         {
             if (idBrand != null)
             {
-                var lsProducts = db.Products.Where(o => o.brand_ID == idBrand).ToList();
+                var lsProducts = db.Products.Where(o => o.brand_ID == idBrand
+                                                        && o.product_Quantity > 0)
+                                            .ToList();
                 return View("Index", lsProducts);
             }
             return RedirectToAction("Index");

@@ -151,9 +151,9 @@ namespace Ecommerce.Controllers
         }
         [HttpPost]
         public IActionResult CheckOut(Customer newCustomer,
-                                                  string option_payment,
-                                                  string promotion_code,
-                                                  string deliverycost_id)
+                                      string option_payment,
+                                      string promotion_code,
+                                      string deliverycost_id)
         {
             ViewBag.listCart = GetCartItems();
             ViewBag.listDeliveryCost = new SelectList(dbContext.DeliveryCosts.ToList(),
@@ -191,12 +191,12 @@ namespace Ecommerce.Controllers
                 if (option_payment == "cod")
                 {
                     order.order_PaymentMethod = "Thanh toán COD";
-                    order.StatusOrder = "Chưa xác nhận đơn";
+                    order.StatusOrder = "Chưa xác nhận";
                 }
                 else if (option_payment == "paypal")
                 {
                     order.order_PaymentMethod = "Thanh toán PayPal";
-                    order.StatusOrder = "Đã xác nhận đơn";
+                    order.StatusOrder = "Đã xác nhận";
                 }
                 order.customer_ID = customer.customer_ID;
                 if (deliverycost_id == "0")

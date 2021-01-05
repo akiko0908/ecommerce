@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Ecommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
     public class ManageOrderController : Controller
     {
         private readonly ApplicationDbContext dbContext;
@@ -24,6 +23,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             dbContext = _context;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             var listOrder = dbContext.Orders.Include(p => p.Customer)
@@ -34,21 +34,36 @@ namespace Ecommerce.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int? id)
+        public IActionResult CancelOrder(int? id)
         {
             var order = dbContext.Orders.Include(m => m.Customer)
-                                            .Include(m => m.DeliveryCost)
-                                            .Include(m => m.Promotion)
-                                            .Include(m => m.OrderDetails)
-                                            .Where(m => m.order_ID == id);
-
+                                        .Include(m => m.DeliveryCost)
+                                        .Include(m => m.Promotion)
+                                        .Include(m => m.OrderDetails)
+                                        .Where(m => m.order_ID == id)
+                                        .FirstOrDefault();
+            ViewBag.listOrderDetails = dbContext.OrderDetails.Include(p => p.Product)
+                                                             .Where(p => p.order_ID == order.order_ID)
+                                                             .ToList();
             return View(order);
         }
-        [HttpPost]
-        public IActionResult ConfirmDelete(int? id, Order chooseOrder)
+
+        public IActionResult ConfirmCancel(int? id)
         {
-            var orderSelect = dbContext.Orders.Where(m => m.order_ID == id).FirstOrDefault();
-            dbContext.Orders.Remove(orderSelect);
+            var orderSelect = dbContext.Orders.Include(p => p.OrderDetails).Where(m => m.order_ID == id).FirstOrDefault();
+
+            List<OrderDetail> lsOrderDetails = dbContext.OrderDetails.Include(p => p.Product)
+                                                       .Where(p => p.order_ID == orderSelect.order_ID)
+                                                       .ToList();
+
+            foreach (var item in lsOrderDetails)
+            {
+                Product product = item.Product;
+                product.product_Quantity = product.product_Quantity + item.orderdetail_Quantity;
+                dbContext.SaveChanges();
+            }
+
+            orderSelect.StatusOrder = "Đã hủy đơn";
             dbContext.SaveChanges();
 
             return RedirectToAction("Index");
@@ -60,7 +75,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             return View(listOrderDetails);
         }
 
-        public IActionResult Edit(int? id, string statusOrder)
+        public IActionResult UpdateStatus(int? id, string statusOrder)
         {
             if (id != null && statusOrder != null)
             {
@@ -70,7 +85,6 @@ namespace Ecommerce.Areas.Admin.Controllers
                 {
                     order.order_PaymentDate = DateTime.Now;
                 }
-                dbContext.Orders.Update(order);
                 dbContext.SaveChanges();
 
                 return RedirectToAction("Index");

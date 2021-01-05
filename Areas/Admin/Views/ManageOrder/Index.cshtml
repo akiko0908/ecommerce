@@ -33,7 +33,7 @@
             <th>Chiết khấu</th>
             <th>Tổng tiền</th>
             <th>Tình trạng đơn</th>
-            <th></th>
+            <th>Tác vụ</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -50,29 +50,37 @@
                 <td>@item.StatusOrder</td>
                 @switch (item.StatusOrder)
                 {
-                    case "Chưa xác nhận đơn":
+                    case "Chờ xác nhận":
                         <td>
-                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="Edit"
-                                asp-route-id="@item.order_ID" asp-route-statusOrder="Đã xác nhận đơn">Xác nhận đơn</a> |
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
-                                asp-route-id="@item.order_ID">Delete</a>
+                            <a class="btn btn-info" asp-area="Admin" asp-action="UpdateStatus" asp-route-id="@item.order_ID"
+                                asp-route-statusOrder="Xác nhận">Xác nhận</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-action="CancelOrder"
+                                asp-route-id="@item.order_ID">Cancel</a>
                         </td>
                         break;
 
-                    case "Đã xác nhận đơn":
+                    case "Xác nhận":
                         <td>
-                            <a class="btn btn-info" asp-area="Admin" asp-controller="ManageOrder" asp-action="Edit"
-                                asp-route-id="@item.order_ID" asp-route-statusOrder="Đã thanh toán">Đã thanh toán</a> |
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
-                                asp-route-id="@item.order_ID">Delete</a>
+                            <a class="btn btn-info" asp-area="Admin" asp-action="UpdateStatus" asp-route-id="@item.order_ID"
+                                asp-route-statusOrder="Đang giao">Chờ giao & thanh toán</a> |
+                            <a class="btn btn-info" asp-area="Admin" asp-action="UpdateStatus" asp-route-id="@item.order_ID"
+                                asp-route-statusOrder="Đã thanh toán">Thanh toán</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-action="CancelOrder"
+                                asp-route-id="@item.order_ID">Cancel</a>
                         </td>
                         break;
 
-                    case "Đã thanh toán":
+                    case "Đang giao":
                         <td>
-                            <a class="btn btn-danger" asp-area="Admin" asp-controller="ManageOrder" asp-action="Delete"
-                                asp-route-id="@item.order_ID">Delete</a>
+                            <a class="btn btn-info" asp-area="Admin" asp-action="UpdateStatus" asp-route-id="@item.order_ID"
+                                asp-route-statusOrder="Đã thanh toán">Thanh toán</a> |
+                            <a class="btn btn-danger" asp-area="Admin" asp-action="CancelOrder"
+                                asp-route-id="@item.order_ID">Cancel</a>
                         </td>
+                        break;
+
+                    default:
+                        <td></td>
                         break;
                 }
             </tr>

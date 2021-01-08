@@ -9,20 +9,27 @@
 </div>
 <hr>
 
-<a asp-controller="manageproduct" asp-action="create" class="btn btn-success">Thêm mới sản phẩm</a>
-
 <script type="text/javascript">
     setTimeout(function () {
         $('#notifiMsg').fadeOut('slow');
     }, 3000);
 </script>
-
 @if (ViewBag.notifyMsg != null)
 {
     <div id="notifiMsg" class="alert alert-success" role="alert">
         @ViewBag.notifyMsg
     </div>
+    <hr>
 }
+
+<div>
+    <form asp-action="Index" method="GET">
+        <input type="text" name="stringSearch" value="">
+        <input type="submit" value="Tìm kiếm">
+    </form>
+</div>
+
+<a asp-controller="manageproduct" asp-action="create" class="btn btn-success">Thêm mới sản phẩm</a>
 
 <div>
     <h2>Điện thoại</h2>

@@ -43,7 +43,9 @@
         <td>@(stt++)</td>
         <td>@cartitem.Product.product_Name</td>
         <td>@(cartitem.Product.product_Price.ToString("n0"))</td>
-        <td>@(cartitem.orderdetail_Quantity) </td>
+        <td>
+          <input type="number" name="quantity" value="@(cartitem.orderdetail_Quantity)">
+        </td>
         <td>@(thanhtien.ToString("n0"))</td>
         <td>
           <a asp-controller="Cart" asp-action="RemoveCart" asp-route-productid="@cartitem.Product.product_ID"

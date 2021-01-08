@@ -191,7 +191,7 @@ namespace Ecommerce.Controllers
                 if (option_payment == "cod")
                 {
                     order.order_PaymentMethod = "Thanh toán COD";
-                    order.StatusOrder = "Chưa xác nhận";
+                    order.StatusOrder = "Chờ xác nhận";
                 }
                 else if (option_payment == "paypal")
                 {

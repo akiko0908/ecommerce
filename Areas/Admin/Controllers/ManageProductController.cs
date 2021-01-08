@@ -25,7 +25,7 @@ namespace Ecommerce.Areas.Admin.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(string stringSearch)
         {
             var lsProduct = dbContext.Products.Include(x => x.Brand)
                                               .Include(x => x.HeDieuHanh)
@@ -101,11 +101,11 @@ namespace Ecommerce.Areas.Admin.Controllers
         public IActionResult Delete(int? id)
         {
             Product oldProduct = dbContext.Products.Include(p => p.Brand)
-                                               .Include(p => p.Supplier)
-                                               .Include(p => p.HeDieuHanh)
-                                               .Include(p => p.Categories)
-                                               .Where(x => x.product_ID == id)
-                                               .FirstOrDefault();
+                                                   .Include(p => p.Supplier)
+                                                   .Include(p => p.HeDieuHanh)
+                                                   .Include(p => p.Categories)
+                                                   .Where(x => x.product_ID == id)
+                                                   .FirstOrDefault();
             return View(oldProduct);
         }
         [HttpPost]

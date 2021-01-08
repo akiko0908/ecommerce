@@ -33,6 +33,7 @@ namespace Ecommerce.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Index()
         {
+            // lấy ds người dùng có role là Administrator
             var listUser = userManager.GetUsersInRoleAsync("Administrator").ToString();
             return View(listUser);
         }

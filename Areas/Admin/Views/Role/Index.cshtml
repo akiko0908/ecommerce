@@ -23,7 +23,6 @@
 
 <div style="margin-bottom: .4em;">
   <a asp-controller="Role" asp-action="CreateRole" class="btn btn-success">Create New Role</a>
-  <a asp-controller="Role" asp-action="AssignRole" class="btn btn-success">Assign Role To User</a>
 </div>
 
 <table class="table">
@@ -38,7 +37,7 @@
       <td>@role.Id</td>
       <td>@role.Name</td>
       <td>
-        <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-success btn-sm">Edit</a> |
+        <a asp-action="UpdateAssignRole" asp-route-id="@role.Id" class="btn btn-success btn-sm">Update Assign</a> |
         <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-danger btn-sm">Delete</a>
       </td>
     </tr>

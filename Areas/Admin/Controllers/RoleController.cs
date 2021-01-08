@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Ecommerce.Areas.Admin.Models.ViewModel;
+using Ecommerce.Areas.Admin.Models;
 
 namespace Ecommerce.Areas.Admin.Controllers
 {
@@ -86,6 +87,7 @@ namespace Ecommerce.Areas.Admin.Controllers
             return View(NotFound());
         }
 
+        [HttpGet]
         public async Task<IActionResult> ConfirmDelete(string id)
         {
             IdentityRole role = await _roleManager.FindByIdAsync(id);
@@ -101,6 +103,40 @@ namespace Ecommerce.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("DeleteRole");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateAssignRole(string idRole)
+        {
+            IdentityRole role = await _roleManager.FindByIdAsync(idRole);
+
+            List<AppUser> member = new List<AppUser>();
+            List<AppUser> nonMember = new List<AppUser>();
+
+            foreach (AppUser user in _userManager.Users)
+            {
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                    member.Add(user);
+                else
+                    nonMember.Add(user);
+            }
+
+            return View(new RoleEdit { Role = role, Member = member, NonMember = nonMember });
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateAssignRole(RoleModification model)
+        {
+            IdentityResult result;
+
+            if (ModelState.IsValid)
+            {
+                foreach (string userId in model.AddIds)
+                {
+                    
+                }
+            }
+
+            return View();
         }
 
     }
